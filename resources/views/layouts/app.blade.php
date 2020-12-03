@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('head')
 </head>
 <body>
     <div id="app">
@@ -33,7 +35,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'giojs') == 0) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('giojs') }}">Gio.js</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -76,5 +80,7 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('body')
 </body>
 </html>

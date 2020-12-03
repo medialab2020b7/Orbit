@@ -17,6 +17,4 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/giojs', function () {
-    return view('giojs');
-})->name('giojs');
+Route::get('/giojs', 'GioJSController@index')->name('giojs');
