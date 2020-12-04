@@ -1,14 +1,13 @@
-<div class="card mt-3">
-  <div class="card-header">
-    Resource
-  </div>
-  <div class="card-body">
-    <div class="list-group">
-        <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
-        <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
-        <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
-        <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
-        <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
+<section class="text-center my-3">
+    <div class="card p-3">
+        <h2 class="h1-responsive font-weight-bold my-5">Resource</h2>
+
+        <div class="list-group">
+            <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
+            <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
+            <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
+            <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
+            <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Dapibus ac facilisis in</a>
+        </div>
     </div>
-  </div>
-</div>
+</section>
