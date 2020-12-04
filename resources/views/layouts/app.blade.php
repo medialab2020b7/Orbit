@@ -35,9 +35,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'giojs') == 0) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('giojs') }}">Gio.js</a>
+                        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'about') == 0) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('about') }}">About</a>
                         </li>
+                        @if (Auth::check())
+                            <li class="nav-item {{ (strpos(Route::currentRouteName(), 'giojs') == 0) ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('giojs') }}">Gio.js</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
