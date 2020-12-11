@@ -46,19 +46,33 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Chats</div>
+                <div class="panel-heading">Chat</div>
 
                 <div class="panel-body">
-                    <chat-messages :messages="messages"></chat-messages>
+                  <ul class="chat">
+                    <li class="left clearfix" id="chat-messages">
+                      @include('chat.message-template')
+                    </li>
+                  </ul>
                 </div>
                 <div class="panel-footer">
-                    <chat-form
-                        v-on:messagesent="addMessage"
-                        :user="{{ Auth::user() }}"
-                    ></chat-form>
+                  <div class="input-group" id="chat-form">
+                      <input id="btn-input" type="text" name="message" class="form-control input-sm" placeholder="Type your message here...">
+                      <input id="user-input" type="hidden" name="user" value="{{ Auth::user()->name }}">
+
+                      <span class="input-group-btn">
+                          <button class="btn btn-primary btn-sm" id="btn-chat">
+                              Send
+                          </button>
+                      </span>
+                  </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('body')
+  <script src="{{ asset('js/chat/main.js')}}" defer></script>
 @endsection
