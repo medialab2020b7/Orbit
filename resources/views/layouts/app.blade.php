@@ -42,6 +42,9 @@
                             <li class="nav-item {{ (strpos(Route::currentRouteName(), 'giojs') == 0) ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('giojs') }}">Gio.js</a>
                             </li>
+                            <li class="nav-item {{ (strpos(Route::currentRouteName(), 'messages') == 0) ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('messages') }}">Messages</a>
+                            </li>
                         @endif
                     </ul>
 
