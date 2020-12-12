@@ -1,10 +1,12 @@
 $(function() {
     const chatPlace = $("#chat-messages");
-    const messageTemplate = chatPlace.find(".chat-body");
+    let messageTemplate = chatPlace.find(".chat-body");
 
     const chatSend = $("#btn-chat");
     const chatValueMessage = $("#btn-input");
     const chatValueUser = $("#user-input");
+    const chatReceiver = $("#selectUser");
+    let selectedChatReceiver = chatReceiver.find(":selected");
 
     const addMessage = e => {
         const newMessage = messageTemplate.clone();
@@ -16,61 +18,73 @@ $(function() {
         newMessage.removeClass("hidden");
     };
 
-    const fetchChatMessages = () => axios.get('/push-messages').then(response => {
+    const clearChatMessages = () => {
+        messageTemplate = messageTemplate.clone();
+        chatPlace.empty();
+        chatPlace.append(messageTemplate);
+    };
+
+    const fetchChatMessages = () => axios.get('/push-messages',{
+        params: {
+            receiver_id: selectedChatReceiver.val()
+        }
+    }).then(response => {
+        console.log("Loaded messages"); console.log(response); console.log(response.data);  //Testing
         let chatMessages = response.data;
         chatMessages.forEach(e => addMessage(e));
-        console.log("Loaded messages");
-        console.log(response);
-        console.log(response.data);
     }).catch(err => {
-        console.log("ERROR Loaded messages");
+        console.log("ERROR Loaded messages");  //Testing
         console.log(err);
-        if (err.response) {
-            console.log(err.response);
-        } else if (err.request) {
-            console.log(err.request);
-        }
+        if (err.response) console.log(err.response);
+        else if (err.request) console.log(err.request);
     });
 
     const loadChatMessages = () => {
         fetchChatMessages();
 
+        //Real-time
         Echo.private('chat')
         .listen('MessageSent', (e) => {
-            addMessage({
-                user: {
-                    name: e.user.name
-                },
-                message: e.message.message
-            });
-            console.log("Echo loaded");
-            console.log(e);
+            console.log("Echo loaded"); console.log(e); //Testing
+
+            if(e.message.receiver_id == chatValueUser.val()){
+                console.log("Echo updated");    //Testing
+                addMessage({
+                    user: { name: e.user.name },
+                    message: e.message.message
+                });
+            }  
         });
     };
 
     chatSend.on( "click", function() {
         let message = chatValueMessage.val();
+        let receiver_id = selectedChatReceiver.val();
 
-        axios.post('/push-messages', {message}).then(response => {
-            addMessage({
-                user: {
-                    name: chatValueUser.val()
-                },
-                message
+        if(receiver_id !== ""){
+            axios.post('/push-messages', {
+                message,
+                receiver_id
+            }).then(response => {
+                console.log("Added message"); console.log(response); console.log(response.data);    //Testing
+                addMessage({
+                    user: { name: response.data.user.name },
+                    message: response.data.message.message
+                });
+            }).catch(err => {
+                console.log("ERROR Added message");
+                console.log(err);
+                if (err.response) console.log(err.response);
+                else if (err.request) console.log(err.request);
             });
-            console.log("Added message");
-            console.log(response);
-            console.log(response.data);
-        }).catch(err => {
-            console.log("ERROR Added message");
-            console.log(err);
-            if (err.response) {
-                console.log(err.response);
-            } else if (err.request) {
-                console.log(err.request);
-            }
-        });
+        }
     });
 
-    loadChatMessages();
+    chatReceiver.on('change', function() {
+        selectedChatReceiver = chatReceiver.find(":selected");
+        const val = selectedChatReceiver.val();
+        clearChatMessages();
+
+        if(val !== "") loadChatMessages();
+    });
 });

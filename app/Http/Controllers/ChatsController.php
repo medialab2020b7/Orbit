@@ -21,9 +21,9 @@ class ChatsController extends Controller
      */
     public function index()
     {
-        $messages = Message::with('user')->get();
+      $users = \App\User::all();
 
-        return view('chat')->with('messages', $messages);
+        return view('chat')->with('users', $users);
     }
 
     /**
@@ -31,9 +31,24 @@ class ChatsController extends Controller
      *
      * @return Message
      */
-    public function fetchMessages()
+    public function fetchMessages(Request $request)
     {
-        return Message::with('user')->get();
+      $user = Auth::user();
+
+      $receiver_id = $request->input('receiver_id');
+
+      $messages = Message::with('user')
+      ->where(function ($q) use($user, $receiver_id) {
+        $q->where('user_id', $user->id)
+          ->Where('receiver_id', $receiver_id);
+      })
+      ->orWhere(function ($q) use($user, $receiver_id) {
+        $q->where('user_id', $receiver_id)
+          ->Where('receiver_id', $user->id);
+      })
+      ->get();
+
+      return $messages;
     }
 
     /**
@@ -46,12 +61,15 @@ class ChatsController extends Controller
     {
         $user = Auth::user();
 
+        $receiver_id = $request->input('receiver_id');
+
         $message = $user->messages()->create([
-          'message' => $request->input('message')
+          'message' => $request->input('message'),
+          'receiver_id' => $receiver_id
         ]);
       
         broadcast(new MessageSent($user, $message))->toOthers();
       
-        return ['status' => 'Message Sent!'];
+        return ['message' => $message, 'user' => $message->user, 'receiver' => $message->receiver];
     }
 }

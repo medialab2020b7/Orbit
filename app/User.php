@@ -46,4 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+
+    /**
+     * A user can have many messages (receiver)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function receivers()
+    {
+        return $this->hasMany(Message::class, "receiver_id");
+    }
 }

@@ -49,6 +49,16 @@
                 <div class="panel-heading">Chat</div>
 
                 <div class="panel-body">
+                  <div class="form-group">
+                    <select class="form-control" id="selectUser">
+                      <option value="">Select an User</option>
+                      @foreach($users as $user)
+                        @if($user->id != Auth::user()->id)
+                          <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endif
+                      @endforeach
+                    </select>
+                  </div>
                   <ul class="chat">
                     <li class="left clearfix" id="chat-messages">
                       @include('chat.message-template')
@@ -58,7 +68,7 @@
                 <div class="panel-footer">
                   <div class="input-group" id="chat-form">
                       <input id="btn-input" type="text" name="message" class="form-control input-sm" placeholder="Type your message here...">
-                      <input id="user-input" type="hidden" name="user" value="{{ Auth::user()->name }}">
+                      <input id="user-input" type="hidden" name="user" value="{{ Auth::user()->id }}">
 
                       <span class="input-group-btn">
                           <button class="btn btn-primary btn-sm" id="btn-chat">
