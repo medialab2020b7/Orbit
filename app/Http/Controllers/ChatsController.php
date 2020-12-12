@@ -48,6 +48,8 @@ class ChatsController extends Controller
       })
       ->get();
 
+      dd($messages);
+
       return $messages;
     }
 
