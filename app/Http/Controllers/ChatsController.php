@@ -19,27 +19,9 @@ class ChatsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
       $users = \App\User::all();
-
-
-      $user = Auth::user();
-
-      $receiver_id = $request->input('receiver_id');
-
-      $messages = Message::with('user')
-      ->where(function ($q) use($user, $receiver_id) {
-        $q->where('user_id', $user->id)
-          ->Where('receiver_id', $receiver_id);
-      })
-      ->orWhere(function ($q) use($user, $receiver_id) {
-        $q->where('user_id', $receiver_id)
-          ->Where('receiver_id', $user->id);
-      })
-      ->get();
-
-
 
         return view('chat')->with('users', $users);
     }
@@ -54,6 +36,8 @@ class ChatsController extends Controller
       $user = Auth::user();
 
       $receiver_id = $request->input('receiver_id');
+
+      return $receiver_id;
 
       $messages = Message::with('user')
       ->where(function ($q) use($user, $receiver_id) {
