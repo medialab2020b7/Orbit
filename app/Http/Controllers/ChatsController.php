@@ -37,8 +37,6 @@ class ChatsController extends Controller
 
       $receiver_id = $request->input('receiver_id');
 
-      return $receiver_id;
-
       $messages = Message::with('user')
       ->where(function ($q) use($user, $receiver_id) {
         $q->where('user_id', $user->id)
