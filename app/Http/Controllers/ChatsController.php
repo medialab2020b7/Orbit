@@ -19,7 +19,7 @@ class ChatsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
       $users = \App\User::all();
 
