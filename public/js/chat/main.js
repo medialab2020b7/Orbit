@@ -19,6 +19,17 @@ $(function() {
     const fetchChatMessages = () => axios.get('/push-messages').then(response => {
         let chatMessages = response.data;
         chatMessages.forEach(e => addMessage(e));
+        console.log("Loaded messages");
+        console.log(response);
+        console.log(response.data);
+    }).catch(err => {
+        console.log("ERROR Loaded messages");
+        console.log(err);
+        if (err.response) {
+            console.log(err.response);
+        } else if (err.request) {
+            console.log(err.request);
+        }
     });
 
     const loadChatMessages = () => {
@@ -26,13 +37,14 @@ $(function() {
 
         Echo.private('chat')
         .listen('MessageSent', (e) => {
-            console.log(e)
             addMessage({
                 user: {
                     name: e.user.name
                 },
                 message: e.message.message
             });
+            console.log("Echo loaded");
+            console.log(e);
         });
     };
 
@@ -46,6 +58,17 @@ $(function() {
                 },
                 message
             });
+            console.log("Added message");
+            console.log(response);
+            console.log(response.data);
+        }).catch(err => {
+            console.log("ERROR Added message");
+            console.log(err);
+            if (err.response) {
+                console.log(err.response);
+            } else if (err.request) {
+                console.log(err.request);
+            }
         });
     });
 
