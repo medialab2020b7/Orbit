@@ -47,7 +47,7 @@ $(function() {
         .listen('MessageSent', (e) => {
             console.log("Echo loaded"); console.log(e); //Testing
 
-            if(e.message.receiver_id == chatValueUser.val()){
+            if(chatValueUser.val() == e.message.receiver_id && selectedChatReceiver.val() == e.message.user_id){
                 console.log("Echo updated");    //Testing
                 addMessage({
                     user: { name: e.user.name },
@@ -61,7 +61,7 @@ $(function() {
         let message = chatValueMessage.val();
         let receiver_id = selectedChatReceiver.val();
 
-        if(receiver_id !== ""){
+        if(receiver_id !== "" && message !== ""){
             axios.post('/push-messages', {
                 message,
                 receiver_id
@@ -71,6 +71,7 @@ $(function() {
                     user: { name: response.data.user.name },
                     message: response.data.message.message
                 });
+                chatValueMessage.val("");
             }).catch(err => {
                 console.log("ERROR Added message");
                 console.log(err);
