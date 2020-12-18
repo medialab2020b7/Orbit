@@ -24,3 +24,5 @@ Route::get('/giojs', 'GioJSController@index')->name('giojs');
 Route::get('/messages', 'ChatsController@index')->name('messages');
 Route::get('/push-messages', 'ChatsController@fetchMessages')->name('messages.push');
 Route::post('/push-messages', 'ChatsController@sendMessage')->name('messages.push.create');
+
+Route::get('/profile', 'ProfileController@index')->name('profile');
