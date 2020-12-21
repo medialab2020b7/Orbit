@@ -92,7 +92,9 @@
             @yield('content')
         </main>
 
-        <input id="token" type="hidden" name="api_token" value="{{ Auth::user()->api_token }}">
+        @auth
+            <input id="token" type="hidden" name="api_token" value="{{ Auth::user()->api_token }}">
+        @endauth
     </div>
 
     @yield('body')
