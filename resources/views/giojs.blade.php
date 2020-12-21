@@ -15,13 +15,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Gio.js</div>
-
-                <div class="card-body">
-                    <div id="globeArea" style="width: 100%; height: 400px"></div>
-                </div>
-            </div>
+            <div id="globeArea" style="width: 100%; height: 500PX"></div>
         </div>
     </div>
 </div>
