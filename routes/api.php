@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')->get('/user', 'APIController@user');  //?api_token='.$token
+
+Route::get('/users', 'APIController@users');
+Route::get('/histories', 'APIController@histories');
+Route::get('/emotions', 'APIController@emotions');
+Route::get('/messages', 'APIController@messages');
