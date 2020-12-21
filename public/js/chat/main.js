@@ -1,4 +1,6 @@
 $(function() {
+    const token = $("#token").val();
+
     const chatPlace = $("#chat-messages");
     let messageTemplate = chatPlace.find(".chat-body");
 
@@ -24,8 +26,9 @@ $(function() {
         chatPlace.append(messageTemplate);
     };
 
-    const fetchChatMessages = () => axios.get('/push-messages',{
+    const fetchChatMessages = () => axios.get('/api/messages',{
         params: {
+            api_token: token,
             receiver_id: selectedChatReceiver.val()
         }
     }).then(response => {
@@ -62,7 +65,8 @@ $(function() {
         let receiver_id = selectedChatReceiver.val();
 
         if(receiver_id !== "" && message !== ""){
-            axios.post('/push-messages', {
+            axios.post('/api/messages', {
+                api_token: token,
                 message,
                 receiver_id
             }).then(response => {

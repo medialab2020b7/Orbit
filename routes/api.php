@@ -19,4 +19,6 @@ Route::middleware('auth:api')->get('/user', 'APIController@user');  //?api_token
 Route::get('/users', 'APIController@users');
 Route::get('/histories', 'APIController@histories');
 Route::get('/emotions', 'APIController@emotions');
-Route::get('/messages', 'APIController@messages');
+
+Route::middleware('auth:api')->get('/messages', 'APIController@messagesFetch');
+Route::middleware('auth:api')->post('/messages', 'APIController@messagesCreate');

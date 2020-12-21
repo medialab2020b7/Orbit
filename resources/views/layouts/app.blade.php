@@ -91,6 +91,8 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <input id="token" type="hidden" name="api_token" value="{{ Auth::user()->api_token }}">
     </div>
 
     @yield('body')
