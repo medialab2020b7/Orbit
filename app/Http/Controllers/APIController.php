@@ -114,4 +114,26 @@ class APIController extends Controller
       
         return ['message' => $message, 'user' => $message->user, 'receiver' => $message->receiver];
     }
+
+        /**
+     * Persist message to database
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function historiesCreate(Request $request)
+    {
+        $history = new \App\History;
+        $history->user_id = $request->input('user_id');
+        $history->description = $request->input('description');
+        $history->history_date = $request->input('history_date');
+        $history->country = $request->input('country');
+        $history->city = $request->input('city');
+        $history->active = $request->input('active');
+        $history->emotion_id = $request->input('emotion_id');
+
+        $history->save();
+      
+        return ['history' => $history];
+    }
 }

@@ -22,3 +22,5 @@ Route::get('/emotions', 'APIController@emotions');
 
 Route::middleware('auth:api')->get('/messages', 'APIController@messagesFetch');
 Route::middleware('auth:api')->post('/messages', 'APIController@messagesCreate');
+
+Route::middleware('auth:api')->post('/histories', 'APIController@historiesCreate');
