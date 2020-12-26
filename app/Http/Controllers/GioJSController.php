@@ -23,6 +23,8 @@ class GioJSController extends Controller
      */
     public function index()
     {
-        return view('giojs');
+        $histories = \App\History::all();
+
+        return view('giojs')->with('histories', $histories);
     }
 }
