@@ -78,10 +78,6 @@
             color: white;
         }
 
-        .container {
-            max-width: 80vw;
-        }
-
         .list-group-item {
             background-color: transparent;
             color: white;
