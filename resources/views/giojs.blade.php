@@ -142,7 +142,7 @@
                                 <small>{{ $h->history_date }}</small>
                             </div>
                             <p class="mb-1">{{ $h->description }}</p>
-                            <small>User</small>
+                            <small>{{ $users[$h->user_id]->name }}</small>
                         </a>
                     @endforeach
                 </div>
