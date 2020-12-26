@@ -138,8 +138,8 @@
                     @foreach($histories as $h)
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h2 class="mb-1">{{ $h->emotion_id }}</h2>
-                                <small>{{ $h->history_date }}</small>
+                                <h2 class="mb-1"> @if($h->emotion_id !== 2) {{$emotions[$h->emotion_id]->name}} @else not defined @endif</h2>
+                                <small>{{ $h->history_date }}</small> <!-- ATENÇÃO tá aqui um bug qq com a BD, ele tá a pedir a 3 emoção mas só temos 2 -->
                             </div>
                             <p class="mb-1">{{ $h->description }}</p>
                             <small>{{ $users[$h->user_id]->name }}</small>
