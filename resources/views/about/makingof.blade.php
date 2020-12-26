@@ -1,6 +1,6 @@
 <section class="text-center my-3">
     <div class="card p-3">
-        <h2 class="h1-responsive font-weight-bold my-5">Making Of</h2>
+        <h1 class="h1-responsive font-weight-bold my-5">Making Of</h1>
 
         <div id="myCarousel" class="carousel slide pointer-event" data-ride="carousel">
             <ol class="carousel-indicators">

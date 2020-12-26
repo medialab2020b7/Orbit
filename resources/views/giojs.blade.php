@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div id="globeArea" style="width: 100%; height: 500PX"></div>
+            <div id="globeArea"></div>
         </div>
         <!-- Button trigger modal -->
         <button id="submitStoryButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitStoryModal">
