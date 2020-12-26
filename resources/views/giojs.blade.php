@@ -5,6 +5,80 @@
     <script src="{{ asset('js/giojs/three.min.js')}}"></script>
     <script src="{{ asset('js/giojs/gio.min.js')}}"></script>
     <script src="{{ asset('js/giojs/sample-data.js')}}"></script>
+
+    <style>
+        .modal.show .modal-dialog {
+            transform: translateY(-60%);
+            top: 50%;
+            max-width: calc(100vw/2);
+            background-color: white;
+            color: black;
+        }
+
+        .modal.show .btn-primary {
+            border: 1px solid black;
+            color: black;
+        }
+
+        .modal.show .btn-secondary {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal.show .btn-primary:hover {
+            border: 1px solid blue;
+            color: white;
+        }
+
+        .modal.show .btn-secondary:hover {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header, .modal-footer {
+            border: none;
+        }
+
+        #submitStoryButton {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        #globeArea {
+            width: 100%;
+            height: calc(100vh/1.4);
+            background-color: transparent;
+        }
+
+        .input-group {
+            width: calc(100%/3);
+            background-color: transparent;
+            margin-top: 10px;
+        }
+
+        .custom-select {
+            background-color: transparent;
+            color: white;
+        }
+
+        .custom-select option {
+            color: black;
+        }
+
+        .input-group .btn-outline-secondary {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .input-group .btn-outline-secondary:hover {
+            border: 1px solid red;
+            background-color: red;
+            color: white;
+        }
+
+    </style>
 @endsection
 
 @section('body')
@@ -23,13 +97,38 @@
                     Tell My Story
                 </button>
 
+                <!--Filter Dropdowns-->
+                <div class="input-group">
+                    <select class="custom-select" id="inputGroupSelect04">
+                        <option selected>Choose Emotion</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Go</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <select class="custom-select" id="inputGroupSelect04">
+                        <option selected>Choose City</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Go</button>
+                    </div>
+                </div>
+
                 <!-- Modal -->
                 <div class="modal fade" id="submitStoryModal" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Share your story!</h5>
+                                <h1 class="modal-title" id="exampleModalLabel">Share your story!</h1>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
