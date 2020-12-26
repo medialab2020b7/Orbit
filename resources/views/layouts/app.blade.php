@@ -23,10 +23,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('img/logo.png') }}" alt="logo" style="width: 100px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -39,11 +39,11 @@
                             <a class="nav-link" href="{{ route('about') }}">About</a>
                         </li>
                         <li class="nav-item {{ (strpos(Route::currentRouteName(), 'giojs') == 0) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('giojs') }}">Gio.js</a>
+                            <a class="nav-link" href="{{ route('giojs') }}">Globe</a>
                         </li>
                         @if (Auth::check())
                             <li class="nav-item {{ (strpos(Route::currentRouteName(), 'messages') == 0) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('messages') }}">Messages</a>
+                                <a class="nav-link" href="{{ route('messages') }}">Chat</a>
                             </li>
                         @endif
                     </ul>

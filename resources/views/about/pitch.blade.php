@@ -1,6 +1,6 @@
 <section class="text-center my-3">
     <div class="card p-3">
-        <h2 class="h1-responsive font-weight-bold my-5">Pitch</h2>
+        <h1 class="h1-responsive font-weight-bold my-5">Pitch</h1>
 
         <div class="row">
           <div class="col-lg-4">

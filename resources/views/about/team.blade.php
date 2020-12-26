@@ -1,6 +1,6 @@
 <section class="text-center my-3">
     <div class="card p-3">
-        <h2 class="h1-responsive font-weight-bold my-5">Our team</h2>
+        <h1 class="h1-responsive font-weight-bold my-5">Our team</h1>
 
         <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam

@@ -1,6 +1,6 @@
 <section class="text-center my-3">
     <div class="card p-3">
-        <h2 class="h1-responsive font-weight-bold my-5">Promotional</h2>
+        <h1 class="h1-responsive font-weight-bold my-5">Promotional</h1>
 
         <div class="album py-5">
           <div class="container">
