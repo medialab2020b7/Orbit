@@ -78,7 +78,7 @@ class APIController extends Controller
         $user = Auth::user();
 
         $receiver_id = $request->input('receiver_id');
-  
+
         $messages = \App\Message::with('user')
         ->where(function ($q) use($user, $receiver_id) {
           $q->where('user_id', $user->id)
@@ -89,7 +89,7 @@ class APIController extends Controller
             ->Where('receiver_id', $user->id);
         })
         ->get();
-  
+
         return $messages;
     }
 
@@ -109,9 +109,9 @@ class APIController extends Controller
           'message' => $request->input('message'),
           'receiver_id' => $receiver_id
         ]);
-      
+
         broadcast(new MessageSent($user, $message))->toOthers();
-      
+
         return ['message' => $message, 'user' => $message->user, 'receiver' => $message->receiver];
     }
 
@@ -126,14 +126,14 @@ class APIController extends Controller
         $history = new \App\History;
         $history->user_id = $request->input('user_id');
         $history->description = $request->input('description');
-        $history->history_date = $request->input('history_date');
+        $history->history_date = $request->input('day') . '-' . $request->input('month') . '-' . $request->input('year');
         $history->country = $request->input('country');
         $history->city = $request->input('city');
         $history->active = $request->input('active');
         $history->emotion_id = $request->input('emotion_id');
 
         $history->save();
-      
+
         return ['history' => $history];
     }
 }
