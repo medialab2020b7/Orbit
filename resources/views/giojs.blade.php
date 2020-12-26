@@ -98,11 +98,13 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div id="globeArea"></div>
+                @if(Auth::check())
                 <!-- Button trigger modal -->
                 <button id="submitStoryButton" type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#submitStoryModal">
                     Tell My Story
                 </button>
+                @endif
 
                 <!--Filter Dropdowns-->
                 <div class="input-group">
@@ -134,8 +136,10 @@
                     @foreach($histories as $h)
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h2 class="mb-1"> @if($h->emotion_id !== 2) {{$emotions[$h->emotion_id]->name}} @else not defined @endif</h2>
-                                <small>{{ $h->history_date }}</small> <!-- ATENÇÃO tá aqui um bug qq com a BD, ele tá a pedir a 3 emoção mas só temos 2 -->
+                                <h2 class="mb-1"> @if($h->emotion_id !== 2) {{$emotions[$h->emotion_id]->name}} @else
+                                        not defined @endif</h2>
+                                <small>{{ $h->history_date }}</small>
+                                <!-- ATENÇÃO tá aqui um bug qq com a BD, ele tá a pedir a 3 emoção mas só temos 2 -->
                             </div>
                             <p class="mb-1">{{ $h->description }}</p>
                             <small>{{ $users[$h->user_id]->name }}</small>
@@ -146,56 +150,58 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="submitStoryModal" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title" id="exampleModalLabel">Share your story!</h1>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <input id="user_id" type="hidden" name="user" value="{{ Auth::user()->id }}">
-                        <input id="active" type="hidden" name="user" value="1">
-                        <div class="form-group">
-                            <label for="description">Write your story here</label>
-                            <textarea name="description" class="form-control" id="description"
-                                      rows="3"></textarea>
+        @if(Auth::check())
+            <div class="modal fade" id="submitStoryModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="exampleModalLabel">Share your story!</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <select name="emotion_id" class="form-control" id="emotion_id">
-                                <option value="0">Emotion</option>
-                            </select>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="inputState">
-                                    <input name="history_date" id="history_date" class="form-control" type="text"
-                                           placeholder="Date">
-                                </label>
+                        <div class="modal-body">
+                            <input id="user_id" type="hidden" name="user" value="{{ Auth::user()->id }}">
+                            <input id="active" type="hidden" name="user" value="1">
+                            <div class="form-group">
+                                <label for="description">Write your story here</label>
+                                <textarea name="description" class="form-control" id="description"
+                                          rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <select name="emotion_id" class="form-control" id="emotion_id">
+                                    <option value="0">Emotion</option>
+                                </select>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label for="inputState">
-                                        <input name="country" id="country" class="form-control" type="text"
-                                               placeholder="Country">
+                                        <input name="history_date" id="history_date" class="form-control" type="text"
+                                               placeholder="Date">
                                     </label>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputState">
-                                        <input name="city" id="city" class="form-control" type="text"
-                                               placeholder="City">
-                                    </label>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">
+                                            <input name="country" id="country" class="form-control" type="text"
+                                                   placeholder="Country">
+                                        </label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">
+                                            <input name="city" id="city" class="form-control" type="text"
+                                                   placeholder="City">
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="btn-story">Submit</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" id="btn-story">Submit</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+    @endif
 
 @endsection
