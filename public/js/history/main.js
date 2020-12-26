@@ -4,10 +4,9 @@ $(function() {
     const botaoClicar = $("#btn-story");
 
     botaoClicar.on("click", function(){
-        console.log('alooo');
         const description = $("#description").val();
         const user_id = $("#user_id").val();
-        const history_day = $("#day").val();
+        const history_date = $("#history_date").val();
         const history_month = $("#month").val();
         const history_year = $("#year").val();
         const country = $("#country").val();
@@ -22,9 +21,7 @@ $(function() {
             api_token: token,
             user_id,
             description,
-            history_day,
-            history_month,
-            history_year,
+            history_date,
             country,
             city,
             active,
@@ -40,6 +37,7 @@ $(function() {
             console.log(err)
         });
 
-        document.getElementById("submitStoryModal").style.display = "none";
+        $('#submitStoryModal').modal('hide');
+
     });
 });

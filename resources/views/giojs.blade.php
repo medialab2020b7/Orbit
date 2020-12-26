@@ -8,6 +8,7 @@
 @endsection
 
 @section('body')
+    <script src="{{ asset('js/history/main.js')}}" defer></script>
     <script src="{{ asset('js/giojs/main.js')}}"></script>
 @endsection
 
@@ -47,23 +48,11 @@
                                         </select>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-2">
+                                        <div class="form-group col-md-12">
                                             <label for="inputState">
-                                                <input name="day" id="day" class="form-control" type="text" placeholder="Day">
+                                                <input name="history_date" id="history_date" class="form-control" type="text" placeholder="Date">
                                             </label>
                                         </div>
-                                        <div class="form-group col-md-5">
-                                            <label for="inputState">
-                                                <input name="month" id="month" class="form-control" type="text"
-                                                       placeholder="Month">
-                                            </label>
-                                        </div>
-                                        <div class="form-group col-md-5">
-                                            <label for="inputState">
-                                                <input name="year" id="year" class="form-control" type="text" placeholder="Year">
-                                            </label>
-                                        </div>
-                                    </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputState">
@@ -86,8 +75,4 @@
                     </div>
                 </div>
             </div>
-@endsection
-
-@section('body')
-    <script src="{{ asset('js/history/main.js')}}" defer></script>
 @endsection
