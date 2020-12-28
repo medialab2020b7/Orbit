@@ -23,10 +23,9 @@ class GioJSController extends Controller
      */
     public function index()
     {
-        $histories = \App\History::all();
-        $users = \App\User::all();
+        $histories = \App\History::with('user')->with('emotion')->get();
         $emotions = \App\Emotion::all();
 
-        return view('giojs')->with('histories', $histories)->with('users', $users)->with('emotions', $emotions);
+        return view('giojs')->with('histories', $histories)->with('emotions', $emotions);
     }
 }

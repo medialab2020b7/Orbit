@@ -110,9 +110,10 @@
                 <div class="input-group">
                     <select class="custom-select" id="inputGroupSelect04">
                         <option selected>Choose Emotion</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        @foreach($emotions as $e)
+                            <option value="{{$e->id}}">{{$e->name}}</option>
+                        @endforeach
+                        <!-- As emocoes são carregadas da BD. Elas foram criadas hardcoded por meio do Seeder. Checar em "./database/seeds/DatabaseSeeder.php" -->
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">Go</button>
@@ -136,13 +137,13 @@
                     @foreach($histories as $h)
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h2 class="mb-1"> @if($h->emotion_id !== 2) {{$emotions[$h->emotion_id]->name}} @else
-                                        not defined @endif</h2>
+                                <h2 class="mb-1">
+                                    {{ $h->emotion->name ?? 'emotion_not_defined' }}
+                                </h2>
                                 <small>{{ $h->history_date }}</small>
-                                <!-- ATENÇÃO tá aqui um bug qq com a BD, ele tá a pedir a 3 emoção mas só temos 2 -->
                             </div>
                             <p class="mb-1">{{ $h->description }}</p>
-                            <small>{{ $users[$h->user_id]->name }}</small>
+                            <small>{{ $h->user->name }}</small>
                         </a>
                     @endforeach
                 </div>
@@ -171,7 +172,10 @@
                             </div>
                             <div class="form-group">
                                 <select name="emotion_id" class="form-control" id="emotion_id">
-                                    <option value="0">Emotion</option>
+                                <option selected>Choose Emotion</option>
+                                @foreach($emotions as $e)
+                                    <option value="{{$e->id}}">{{$e->name}}</option>
+                                @endforeach
                                 </select>
                             </div>
                             <div class="form-row">
