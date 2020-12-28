@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-@endsection
-
-@section('body')
+    <!-- CSS Goes Here -->
 @endsection
 
 @section('content')
@@ -65,4 +63,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('body')
+<script defer>
+$(function() {
+    //Javascript goes here
+});  
+</script>
 @endsection

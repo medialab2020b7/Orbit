@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+    <!-- CSS Goes Here -->
+@endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -48,4 +52,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('body')
+<script defer>
+$(function() {
+    //Javascript goes here
+});  
+</script>
 @endsection

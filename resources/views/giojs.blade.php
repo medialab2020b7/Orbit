@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('head')
-    <!-- Gio.js -->
-    <script src="{{ asset('js/giojs/three.min.js')}}"></script>
-    <script src="{{ asset('js/giojs/gio.min.js')}}"></script>
-    <script src="{{ asset('js/giojs/sample-data.js')}}"></script>
-
     <style>
         .modal.show .modal-dialog {
             transform: translateY(-60%);
@@ -85,11 +80,6 @@
         }
 
     </style>
-@endsection
-
-@section('body')
-    <script src="{{ asset('js/history/main.js')}}" defer></script>
-    <script src="{{ asset('js/giojs/main.js')}}" defer></script>
 @endsection
 
 @section('content')
@@ -208,4 +198,19 @@
                     </div>
     @endif
 
+@endsection
+
+@section('body')
+<!-- Gio.js -->
+<script src="{{ asset('js/giojs/three.min.js')}}"></script>
+<script src="{{ asset('js/giojs/gio.min.js')}}"></script>
+<script src="{{ asset('js/giojs/sample-data.js')}}"></script>
+<script defer>
+$(function() {
+    var container = document.getElementById( "globeArea" );
+    var controller = new GIO.Controller( container );
+    controller.addData( data );
+    controller.init();
+});  
+</script>
 @endsection
