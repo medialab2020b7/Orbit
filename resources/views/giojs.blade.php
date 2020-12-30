@@ -143,8 +143,8 @@
             <div class="col-md-2">
                 <div class="list-group">
                     @foreach($histories as $h)
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
-                           data-target="#storyDataModal">
+                        <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
+                           data-target="#storyDataModal" data-id={{$h->id}}>
                             <div class="d-flex w-100 justify-content-between">
                                 <h2 class="mb-1">
                                     {{ $h->emotion->name ?? 'emotion_not_defined' }}

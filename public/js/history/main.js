@@ -40,4 +40,11 @@ $(function() {
         $('#submitStoryModal').modal('hide');
 
     });
+
+    let clickedStory = 0;
+    $(".story").click(function(e) {
+        clickedStory = $(this).attr('data-id');
+    });
+
+    $("#storyDataModal .modal-title").innerText;
 });
