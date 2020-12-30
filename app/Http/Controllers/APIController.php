@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\MessageSent;
+use Illuminate\Support\Facades\DB;
 
 class APIController extends Controller
 {
@@ -135,5 +136,26 @@ class APIController extends Controller
         $history->save();
 
         return ['history' => $history];
+    }
+
+    /**
+     * Get cities.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function cities(Request $request)
+    {
+        $country_id = $request->country;
+        $states = DB::table('states')->where('country_id', $country_id)->orderBy('name')->get();
+        $cities = collect([]);
+
+        $states->each(function ($item, $key) use($cities) {
+            $state_cities = DB::table('cities')->where('state_id', $item->id)->orderBy('name')->get();
+            $state_cities->each(function ($item2, $key2) use($cities) {
+                $cities->push($item2);
+            });
+        });
+
+        return $cities;
     }
 }

@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(CountriesTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
+        
         $u1 = DB::table('users')->insertGetId([
             'name' => "Teste 1",
             'email' => "a@a.com",

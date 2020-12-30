@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GioJSController extends Controller
 {
@@ -25,7 +26,8 @@ class GioJSController extends Controller
     {
         $histories = \App\History::with('user')->with('emotion')->get();
         $emotions = \App\Emotion::all();
+        $countries = DB::table('countries')->orderBy('name')->get();
 
-        return view('giojs')->with('histories', $histories)->with('emotions', $emotions);
+        return view('giojs')->with('histories', $histories)->with('emotions', $emotions)->with('countries', $countries);
     }
 }
