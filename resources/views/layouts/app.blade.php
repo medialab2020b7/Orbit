@@ -54,11 +54,11 @@
             color: white;
             background-color: black;
         }
-        .h1 {
+        h1 {
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
         }
-        .h2 {
-            font-size: 0.9rem;
+        h2 {
+            font-size: 1.2rem;
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
         }
         .display-3 {
@@ -90,6 +90,22 @@
         .btn {
             border-radius: 0;
         }
+        .btn-primary:hover {
+            color: white;
+            background-color: blue;
+            border-color: blue;
+        }
+        .btn-primary:focus, .btn-primary.focus {
+            color: white;
+            background-color: blue;
+            border-color: blue;
+            box-shadow: none;
+        }
+        .btn-primary:active {
+            color: white;
+            background-color: blue;
+            border-color: blue;
+        }
         .btn-lg,
         .btn-group-lg > .btn {
             border-radius: 0;
@@ -97,6 +113,9 @@
         .btn-sm,
         .btn-group-sm > .btn {
             border-radius: 0;
+        }
+        .card {
+            background-color: transparent;
         }
         .dropdown-menu {
             border-radius: 0;
@@ -185,6 +204,17 @@
         .font-weight-bold {
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
         }
+
+        .btn-primary {
+            color: white;
+            background-color: black;
+            border: 1px solid white;
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+        .small {
+            font-size: 60%;
+        }
+
     </style>
 
     @yield('head')

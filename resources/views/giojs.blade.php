@@ -13,16 +13,28 @@
         .modal.show .btn-primary {
             border: 1px solid black;
             color: black;
+            background-color: transparent;
         }
 
         .modal.show .btn-secondary {
             border: 1px solid rgba(0, 0, 0, 0.3);
             color: rgba(0, 0, 0, 0.3);
+            background-color: transparent;
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
         }
 
         .modal.show .btn-primary:hover {
             border: 1px solid blue;
             color: white;
+            background-color: blue;
+        }
+
+        .modal-content {
+            background-color: transparent;
+        }
+
+        .modal-title {
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
         }
 
         .modal.show .btn-secondary:hover {
@@ -79,6 +91,10 @@
             font-size: 8pt;
         }
 
+        .form-control {
+            background-color: transparent;
+        }
+
     </style>
 @endsection
 
@@ -122,6 +138,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Stories List -->
             <div class="col-md-2">
                 <div class="list-group">
                     @foreach($histories as $h)
@@ -157,11 +175,11 @@
                             <input id="active" type="hidden" name="user" value="1">
                             <div class="form-group">
                                 <label for="description">Write your story here</label>
-                                <textarea name="description" class="form-control" id="description"
+                                <textarea required name="description" class="form-control" id="description"
                                           rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                                <select name="emotion_id" class="form-control" id="emotion_id">
+                                <select required name="emotion_id" class="form-control" id="emotion_id">
                                 <option selected>Choose Emotion</option>
                                 @foreach($emotions as $e)
                                     <option value="{{$e->id}}">{{$e->name}}</option>
@@ -171,20 +189,20 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputState">
-                                        <input name="history_date" id="history_date" class="form-control" type="text"
+                                        <input required name="history_date" id="history_date" class="form-control" type="text"
                                                placeholder="Date">
                                     </label>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">
-                                            <input name="country" id="country" class="form-control" type="text"
+                                            <input required name="country" id="country" class="form-control" type="text"
                                                    placeholder="Country">
                                         </label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputState">
-                                            <input name="city" id="city" class="form-control" type="text"
+                                            <input required name="city" id="city" class="form-control" type="text"
                                                    placeholder="City">
                                         </label>
                                     </div>
@@ -206,4 +224,5 @@
 <script src="{{ asset('js/giojs/gio.min.js')}}"></script>
 <script src="{{ asset('js/giojs/sample-data.js')}}"></script>
 <script src="{{ asset('js/giojs/main.js')}}" defer></script>
+<script src="{{ asset('js/history/main.js')}}" defer></script>
 @endsection

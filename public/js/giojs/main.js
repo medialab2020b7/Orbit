@@ -3,4 +3,4 @@ $(function() {
     var controller = new GIO.Controller( container );
     controller.addData( data );
     controller.init();
-});  
+});
