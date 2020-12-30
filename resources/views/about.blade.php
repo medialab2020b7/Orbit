@@ -55,9 +55,5 @@
 @endsection
 
 @section('body')
-<script defer>
-$(function() {
-    //Javascript goes here
-});  
-</script>
+<script src="{{ asset('js/about/main.js')}}" defer></script>
 @endsection

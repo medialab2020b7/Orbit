@@ -205,12 +205,5 @@
 <script src="{{ asset('js/giojs/three.min.js')}}"></script>
 <script src="{{ asset('js/giojs/gio.min.js')}}"></script>
 <script src="{{ asset('js/giojs/sample-data.js')}}"></script>
-<script defer>
-$(function() {
-    var container = document.getElementById( "globeArea" );
-    var controller = new GIO.Controller( container );
-    controller.addData( data );
-    controller.init();
-});  
-</script>
+<script src="{{ asset('js/giojs/main.js')}}" defer></script>
 @endsection

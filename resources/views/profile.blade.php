@@ -66,9 +66,5 @@
 @endsection
 
 @section('body')
-<script defer>
-$(function() {
-    //Javascript goes here
-});  
-</script>
+<script src="{{ asset('js/profile/main.js')}}" defer></script>
 @endsection

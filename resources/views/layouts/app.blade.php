@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +18,174 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: "Monument Extended";
+            src: url("{{ asset('css/fonts/MonumentExtended-Regular.otf') }}");
+        }
+
+        @font-face {
+            font-family: "Helvetica LT Ext";
+            src: url("{{ asset('css/fonts/HelveticaNeueLTStd-LtEx.otf') }}");
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                max-width: 80vw;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 80vw;
+            }
+        }
+        @media (min-width: 992px) {
+            .container {
+                max-width: 80vw;
+            }
+        }
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 80vw;
+            }
+        }
+        body {
+            font-family: "Helvetica LT Ext", sans-serif;
+            color: white;
+            background-color: black;
+        }
+        .h1 {
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+        .h2 {
+            font-size: 0.9rem;
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+        .display-3 {
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+        .img-thumbnail {
+            border-radius: 0;
+        }
+        kbd {
+            border-radius: 0;
+        }
+        .form-control {
+            color: white;
+            background-color: black;
+            border-radius: 0;
+        }
+        .form-control-sm {
+            border-radius: 0;
+        }
+        .form-control-lg {
+            border-radius: 0;
+        }
+        .valid-tooltip {
+            border-radius: 0;
+        }
+        .invalid-tooltip {
+            border-radius: 0;
+        }
+        .btn {
+            border-radius: 0;
+        }
+        .btn-lg,
+        .btn-group-lg > .btn {
+            border-radius: 0;
+        }
+        .btn-sm,
+        .btn-group-sm > .btn {
+            border-radius: 0;
+        }
+        .dropdown-menu {
+            border-radius: 0;
+        }
+        .input-group-text {
+            border-radius: 0;
+        }
+        .input-group-lg > .form-control,
+        .input-group-lg > .custom-select,
+        .input-group-lg > .input-group-prepend > .input-group-text,
+        .input-group-lg > .input-group-append > .input-group-text,
+        .input-group-lg > .input-group-prepend > .btn,
+        .input-group-lg > .input-group-append > .btn {
+            border-radius: 0;
+        }
+        .input-group-sm > .form-control,
+        .input-group-sm > .custom-select,
+        .input-group-sm > .input-group-prepend > .input-group-text,
+        .input-group-sm > .input-group-append > .input-group-text,
+        .input-group-sm > .input-group-prepend > .btn,
+        .input-group-sm > .input-group-append > .btn {
+            border-radius: 0;
+        }
+        .custom-checkbox .custom-control-label::before {
+            border-radius: 0;
+        }
+        .custom-switch .custom-control-label::before {
+            border-radius: 0;
+        }
+        .custom-switch .custom-control-label::after {
+            border-radius: 0;
+        }
+        .custom-select {
+            border-radius: 0;
+        }
+        .custom-file-label {
+            border-radius: 0;
+        }
+        .custom-file-label::after {
+            border-radius: 0;
+        }
+        .custom-range::-webkit-slider-thumb {
+            border-radius: 0;
+        }
+        .custom-range::-webkit-slider-runnable-track {
+            border-radius: 0;
+        }
+        .custom-range::-moz-range-thumb {
+            border-radius: 0;
+        }
+        .custom-range::-moz-range-track {
+            border-radius: 0;
+        }
+        .custom-range::-ms-thumb {
+            border-radius: 0;
+        }
+        .custom-range::-ms-fill-lower {
+            border-radius: 0;
+        }
+        .navbar {
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+        .card {
+            border-radius: 0;
+        }
+        .card-img,
+        .card-img-top {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .jumbotron {
+            background-color: black;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .list-group-item:last-child {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .modal-content {
+            background-color: black;
+            border-radius: 0;
+        }
+        .font-weight-bold {
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+    </style>
 
     @yield('head')
 </head>
