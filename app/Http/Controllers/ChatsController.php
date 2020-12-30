@@ -19,8 +19,24 @@ class ChatsController extends Controller
      */
     public function index()
     {
-      $users = \App\User::all();
+      $user = \Auth::user();
 
-        return view('chat')->with('users', $users);
+      $users = collect([]);
+
+      $histories = $user->histories;
+
+      // Only add users with connected histories
+      $histories->each(function ($item, $key) use($user, $users) {
+        $histories_histories = $item->histories;
+        
+        $histories_histories->each(function ($item2, $key2) use($user, $users) {
+          if($item2->user != $user)
+            $users->push($item2->user);
+          else if($item2->receiver != $user)
+            $users->push($item2->receiver);
+        });
+      });
+
+      return view('chat')->with('users', $users);
     }
 }

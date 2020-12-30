@@ -33,6 +33,18 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);
+        $u4 = DB::table('users')->insertGetId([
+            'name' => "Teste 4 (No initial message with Teste 1)",
+            'email' => "a4@a.com",
+            'password' => Hash::make('senha123'),
+            'api_token' => Str::random(80),
+        ]);
+        $u5 = DB::table('users')->insertGetId([
+            'name' => "Teste 5 (No history connected to Teste 1)",
+            'email' => "a5@a.com",
+            'password' => Hash::make('senha123'),
+            'api_token' => Str::random(80),
+        ]);
 
         DB::table('messages')->insert([
             'user_id' => $u1,
@@ -84,14 +96,45 @@ class DatabaseSeeder extends Seeder
             'active' => true,
             'emotion_id' => $e1,
         ]);
+        $h4 = DB::table('histories')->insertGetId([
+            'user_id' => $u3,
+            'description' => "Essa é a minha história 4.",
+            'history_date' => Carbon::now(),
+            'country' => "Alemanha",
+            'city' => "Frankfurt",
+            'active' => true,
+            'emotion_id' => $e2,
+        ]);
+        $h5 = DB::table('histories')->insertGetId([
+            'user_id' => $u4,
+            'description' => "Essa é a minha história 5.",
+            'history_date' => Carbon::now(),
+            'country' => "USA",
+            'city' => "New York",
+            'active' => true,
+            'emotion_id' => $e1,
+        ]);
+        $h6 = DB::table('histories')->insertGetId([
+            'user_id' => $u5,
+            'description' => "Essa é a minha história 6.",
+            'history_date' => Carbon::now(),
+            'country' => "USA",
+            'city' => "Chicago",
+            'active' => true,
+            'emotion_id' => $e1,
+        ]);
 
         DB::table('history_history')->insert([
             'history_one' => $h1,
-            'history_two' => $h2
+            'history_two' => $h3
         ]);
         DB::table('history_history')->insert([
             'history_one' => $h1,
-            'history_two' => $h3
+            'history_two' => $h4
+        ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h1,
+            'history_two' => $h5
         ]);
     }
 }
