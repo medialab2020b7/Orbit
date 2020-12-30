@@ -1,7 +1,25 @@
 @extends('layouts.app')
 
 @section('head')
-    <!-- CSS Goes Here -->
+    <style>
+        .avatar img {
+            width: 50%;
+        }
+
+        .list-group {
+            flex-direction: row;
+        }
+
+        [class^="list-group-item"] {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .list-group-item + .list-group-item {
+            border-top-width: 1px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -26,11 +44,11 @@
             @include('about/uxmapping')
         </div>
     </div>
-    <div class="row justify-content-center">
+    <!--div class="row justify-content-center">
         <div class="col-md-10">
             @include('about/product')
         </div>
-    </div>
+    </div-->
     <div class="row justify-content-center">
         <div class="col-md-10">
             @include('about/promotional')
