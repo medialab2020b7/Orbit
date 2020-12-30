@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Orbit</title>
+    <link rel="icon" type="image/png" href="{{asset("img/logo.png")}}"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

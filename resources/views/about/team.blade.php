@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-lg-0 mb-5">
             <div class="avatar mx-auto">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle z-depth-1"
+                <img src="{{ asset('img/members/augusto.jpeg') }}" class="rounded-circle z-depth-1"
                 alt="Sample avatar">
             </div>
             <h5 class="font-weight-bold mt-4 mb-3">Augusto Osório</h5>
@@ -26,7 +26,7 @@
 
             <div class="col-lg-4 col-md-6 mb-lg-0 mb-5">
             <div class="avatar mx-auto">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded-circle z-depth-1"
+                <img src="{{ asset('img/members/beatriz.jpeg') }}" class="rounded-circle z-depth-1"
                 alt="Sample avatar">
             </div>
             <h5 class="font-weight-bold mt-4 mb-3">Beatriz Miranda</h5>
@@ -44,7 +44,7 @@
 
             <div class="col-lg-4 col-md-6 mb-md-0 mb-5">
             <div class="avatar mx-auto">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" class="rounded-circle z-depth-1"
+                <img src="{{ asset('img/members/celio.jpg') }}" class="rounded-circle z-depth-1"
                 alt="Sample avatar">
             </div>
             <h5 class="font-weight-bold mt-4 mb-3">Célio Rodrigues</h5>
@@ -65,7 +65,7 @@
 
             <div class="col-lg-4 col-md-6">
             <div class="avatar mx-auto">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" class="rounded-circle z-depth-1"
+                <img src="{{ asset('img/members/daniel.jpeg') }}" class="rounded-circle z-depth-1"
                 alt="Sample avatar">
             </div>
             <h5 class="font-weight-bold mt-4 mb-3">Daniel Ribeiro</h5>
@@ -83,7 +83,7 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="avatar mx-auto">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" class="rounded-circle z-depth-1"
+                    <img src="{{ asset('img/members/toscano.jpeg') }}" class="rounded-circle z-depth-1"
                          alt="Sample avatar">
                 </div>
                 <h5 class="font-weight-bold mt-4 mb-3">João Toscano</h5>
@@ -101,7 +101,7 @@
 
             <div class="col-lg-4 col-md-6">
                 <div class="avatar mx-auto">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" class="rounded-circle z-depth-1"
+                    <img src="{{ asset('img/members/madalena.jpeg') }}" class="rounded-circle z-depth-1"
                          alt="Sample avatar">
                 </div>
                 <h5 class="font-weight-bold mt-4 mb-3">Madalena Sousa</h5>
