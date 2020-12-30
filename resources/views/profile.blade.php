@@ -17,8 +17,8 @@
                                                                                             class="btn btn-outline-dark btn-sm btn-block">Edit
                                 profile</a></div>
                         <div class="media-body mb-5 text-white">
-                            <h1 class="mt-0 mb-0">Mark Williams</h1>
-                            <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2"></i>New York</p>
+                            <h1 class="mt-0 mb-0">{{ Auth::user()->name }}</h1>
+                            <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2"></i>{{ Auth::user()->email }}</p>
                         </div>
                     </div>
 
