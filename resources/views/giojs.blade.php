@@ -233,11 +233,22 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div class="modal-description">
 
+                            </div>
+                            <div class="modal-story-user">
+
+                            </div>
+                            <div class="modal-story-date">
+
+                            </div>
+                            <div class="modal-story-sound">
+
+                            </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                 </button>
-                                <button type="button" class="btn btn-primary" id="btn-story">Submit</button>
+                                <button type="button" class="btn btn-primary" id="btn-story">Connect</button>
                             </div>
                         </div>
                     </div>

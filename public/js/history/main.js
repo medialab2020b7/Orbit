@@ -41,10 +41,23 @@ $(function() {
 
     });
 
-    let clickedStory = 0;
+    let clickedStoryId = 0;
     $(".story").click(function(e) {
-        clickedStory = $(this).attr('data-id');
-    });
+        clickedStoryId = $(this).attr('data-id');
 
-    $("#storyDataModal .modal-title").innerText;
+        axios.get("/api/histories").then(response => {
+            const data = response.data;
+            const clickedStory = data[clickedStoryId-1];
+            console.log(clickedStory); //isto pode dar erros, mas tentei de bué formas e n consegui de outra maneira
+
+            $("#storyDataModal .modal-title").text(clickedStory.emotion_id);
+            $("#storyDataModal .modal-description").text(clickedStory.description);
+            $("#storyDataModal .modal-story-user").text(clickedStory.user_id);
+            $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
+            $("#storyDataModal .modal-story-sound").text("add sound here");
+
+        }).catch(err => {
+            console.log(err)
+        });
+    });
 });
