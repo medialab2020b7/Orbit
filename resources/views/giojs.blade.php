@@ -110,12 +110,17 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <select name="country_id" class="custom-select" id="country_id">
+                    <option selected>Choose Country</option>
+                    @foreach($countries as $c)
+                        <option value="{{$c->id}}">{{$c->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+
                 <div class="input-group">
-                    <select class="custom-select" id="inputGroupSelect04">
-                        <option selected>Choose City</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select name="city_id" class="custom-select" id="city_id" disabled>
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">Go</button>
@@ -206,4 +211,5 @@
 <script src="{{ asset('js/giojs/gio.min.js')}}"></script>
 <script src="{{ asset('js/giojs/sample-data.js')}}"></script>
 <script src="{{ asset('js/giojs/main.js')}}" defer></script>
+<script src="{{ asset('js/giojs/form.js')}}" defer></script>
 @endsection

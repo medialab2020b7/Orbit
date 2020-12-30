@@ -2,10 +2,6 @@
 
 ## Most-used commands:
 
-### Reset and restart DB with data
-
-* php artisan migrate:fresh --seed
-
-### Recompile js/npm/css files
+* php artisan migrate:fresh --seed --force
 
 * npm run dev
