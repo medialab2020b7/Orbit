@@ -13,7 +13,7 @@
                     <div class="media align-items-end profile-head">
                     <div class="profile mr-3">
                         <img
-                            src="{{ asset('storage/avatar/' . $user->avatar) }}"
+                            src="{{ asset('img/avatar/' . $user->avatar) }}"
                             alt="..." width="130" class="rounded mb-2 img-thumbnail"/>
                         <a href="{{route('profile.edit')}}" class="btn btn-outline-dark btn-sm btn-block">
                         Edit  profile
