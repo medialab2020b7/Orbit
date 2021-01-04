@@ -1,5 +1,5 @@
 $(function() {
-    const countrySelect = $("#country_id");
+    /*const countrySelect = $("#country_id");
     const citySelect = $("#city_id");
 
     countrySelect.on("change", function() {
@@ -28,7 +28,7 @@ $(function() {
             if (err.response) console.log(err.response);
             else if (err.request) console.log(err.request);
         });
-    });
+    });*/
 
     const emotionSelect = $("#emotion_id");
     const storiesList = $("#historias");

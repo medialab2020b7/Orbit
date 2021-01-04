@@ -68,4 +68,30 @@ $(function() {
     controller.init();
 
     fetchHistories();
+
+    const citySelect = $("#city_id");
+    controller.onCountryPicked(function (selectedCountry) {
+
+        citySelect.empty();
+        citySelect.prop("disabled", true);
+
+        axios.get('/api/cities/' + selectedCountry.ISOCode).then(response => {
+            console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
+            const cities = response.data;
+
+            //Add to options
+            citySelect.prop("disabled", false);
+            cities.forEach(c => {
+                citySelect.append($('<option>').val(c.code).text(c.name));
+            });
+
+
+        }).catch(err => {
+            console.log("ERROR Loaded cities");
+            console.log(err);
+            if (err.response) console.log(err.response);
+            else if (err.request) console.log(err.request);
+        });
+    });
+
 });

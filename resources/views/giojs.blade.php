@@ -132,14 +132,14 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!--div class="form-group">
                     <select name="country_id" class="custom-select" id="country_id">
                     <option selected>Choose Country</option>
-                    @foreach($countries as $c)
-                        <option value="{{$c->id}}">{{$c->name}}</option>
-                    @endforeach
+                    @-foreach($countries as $c)
+                        <option value="</option>
+                    @-endforeach
                     </select>
-                </div>
+                </div-->
 
                 <div class="input-group">
                     <select name="city_id" class="custom-select" id="city_id" disabled>

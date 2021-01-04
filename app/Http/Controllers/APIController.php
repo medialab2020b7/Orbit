@@ -162,8 +162,10 @@ class APIController extends Controller
      */
     public function cities(Request $request)
     {
-        $country_id = $request->country;
-        $states = DB::table('states')->where('country_id', $country_id)->orderBy('name')->get();
+        $country_code = $request->country;
+        $countries = DB::table('countries')->where('code', $country_code)->first();
+
+        $states = DB::table('states')->where('country_id', $countries->id)->orderBy('name')->get();
         $cities = collect([]);
 
         $states->each(function ($item, $key) use($cities) {
