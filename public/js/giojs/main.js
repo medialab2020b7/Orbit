@@ -102,6 +102,7 @@ $(function() {
 
     function createStoryListElement(data) {
         const newElemet = listElementTemplate.clone();
+        newElemet.attr('data-id', data.id);
         const storyEmotionName = newElemet.find(".story-emotion-name");
         const storyDescription = newElemet.find(".story-description");
         const storyDate = newElemet.find(".story-date");

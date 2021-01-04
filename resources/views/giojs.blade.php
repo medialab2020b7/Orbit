@@ -139,7 +139,7 @@
             <div class="col-md-2">
                 <div class="list-group" id="historias">
                         <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
-                           data-target="#storyDataModal" >
+                           data-target="#storyDataModal">
                             <div class="d-flex w-100 justify-content-between">
                                 <h2 class="mb-1 story-emotion-name">
 

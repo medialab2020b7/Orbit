@@ -45,7 +45,7 @@ $(function() {
 
         axios.get('/api/historiesById/' + clickedStoryId).then(response => {
             const clickedStory = response.data;
-            console.log("Clicked on this story: " + clickedStory);
+            //console.log("Clicked on this story: " + clickedStory);
 
             $("#storyDataModal .modal-title").text(clickedStory.emotion.name);
             $("#storyDataModal .modal-description").text(clickedStory.description);
