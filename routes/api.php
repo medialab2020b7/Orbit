@@ -27,3 +27,4 @@ Route::middleware('auth:api')->post('/messages', 'APIController@messagesCreate')
 Route::middleware('auth:api')->post('/histories', 'APIController@historiesCreate');
 
 Route::get('/cities/{country}', 'APIController@cities');
+Route::get('/historiesById/{id}', 'APIController@userEmotionHistoriesFetch');
