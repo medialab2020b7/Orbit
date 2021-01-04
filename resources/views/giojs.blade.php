@@ -85,6 +85,11 @@
             color: white;
         }
 
+        .list-group {
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
         .list-group-item {
             background-color: transparent;
             color: white;
@@ -93,6 +98,7 @@
 
         .form-control {
             background-color: transparent;
+            color: black;
         }
 
     </style>
@@ -146,7 +152,7 @@
 
             <!-- Stories List -->
             <div class="col-md-2">
-                <div class="list-group">
+                <div class="list-group" id="historias">
                     @foreach($histories as $h)
                         <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
                            data-target="#storyDataModal" data-id={{$h->id}}>
@@ -218,7 +224,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="btn-story">Connect</button>
+                                    <button type="button" class="btn btn-primary" id="btn-story">Submit</button>
                                 </div>
                             </div>
                         </div>
