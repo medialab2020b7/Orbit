@@ -39,7 +39,7 @@ $(function() {
 
     });
 
-    let clickedStoryId = 0;
+    let clickedStoryId = 0; //ISTO PAROU DE FUNCIONAR DO NADA, CONTINUA A FUNCIONAR NA PERFIL MAS NO GLOBO NÃO, SE ALGUÉM DESCOBRIR O QUE É POR FAVOR CORRIJA OU AVISE-ME (MADALENA)
     $(".story").click(function(e) {
         clickedStoryId = $(this).attr('data-id');
 
