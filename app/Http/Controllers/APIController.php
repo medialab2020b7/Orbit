@@ -140,9 +140,11 @@ class APIController extends Controller
 
     public  function  userEmotionHistoriesFetch(Request $request)
     {
-        $story = $request->id;
+        $storyId = $request->id;
 
-        return $story;
+        $story = \App\History::with('user')->with('emotion')->get();
+
+        return $story[$storyId-1];
     }
 
     /**

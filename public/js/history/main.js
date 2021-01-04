@@ -44,15 +44,14 @@ $(function() {
         clickedStoryId = $(this).attr('data-id');
 
         axios.get('/api/historiesById/' + clickedStoryId).then(response => {
-            console.log(response.data);
-            /*const clickedStory = data[clickedStoryId-1]; //isto pode dar erros, mas tentei de bué formas e n consegui de outra maneira e como os ids começam no 1
-            console.log(clickedStory);
+            const clickedStory = response.data;
+            console.log("Clicked on this story: " + clickedStory);
 
-            $("#storyDataModal .modal-title").text(clickedStory.emotion_id);
+            $("#storyDataModal .modal-title").text(clickedStory.emotion.name);
             $("#storyDataModal .modal-description").text(clickedStory.description);
-            $("#storyDataModal .modal-story-user").text(clickedStory.user_id);
+            $("#storyDataModal .modal-story-user").text(clickedStory.user.name);
             $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
-            $("#storyDataModal .modal-story-sound").text("add sound here");*/
+            $("#storyDataModal .modal-story-sound").text("add sound here");
 
         }).catch(err => {
             console.log(err)
