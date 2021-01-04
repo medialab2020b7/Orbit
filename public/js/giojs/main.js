@@ -77,7 +77,7 @@ $(function() {
         citySelect.prop("disabled", true);
 
         axios.get('/api/cities/' + selectedCountry.ISOCode).then(response => {
-            console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
+            //console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
             const cities = response.data;
 
             //Add to options
@@ -86,6 +86,18 @@ $(function() {
                 citySelect.append($('<option>').val(c.code).text(c.name));
             });
 
+
+        }).catch(err => {
+            console.log("ERROR Loaded cities");
+            console.log(err);
+            if (err.response) console.log(err.response);
+            else if (err.request) console.log(err.request);
+        });
+
+        axios.get('/api/historiesByCountry/' + selectedCountry.ISOCode).then(response => {
+            const stories = response.data;
+            storiesList.empty();
+            stories.forEach(e => createStoryListElement(e));
 
         }).catch(err => {
             console.log("ERROR Loaded cities");

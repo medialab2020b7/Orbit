@@ -147,6 +147,16 @@ class APIController extends Controller
         return $story[$storyId-1];
     }
 
+    public  function  historiesByCountryFetch(Request $request)
+    {
+        $countryCode = $request->country_code;
+        $countries = DB::table('countries')->where('code', $countryCode)->first();
+
+        $stories = \App\History::where('country', $countries->name)->with('emotion')->with('user')->get();
+
+        return $stories;
+    }
+
     public function historiesByEmotionFetch(Request $request)
     {
         $emotionId = $request->emotion_id;

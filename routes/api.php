@@ -29,3 +29,4 @@ Route::middleware('auth:api')->post('/histories', 'APIController@historiesCreate
 Route::get('/cities/{country}', 'APIController@cities');
 Route::get('/historiesById/{id}', 'APIController@userEmotionHistoriesFetch');
 Route::get('/historiesByEmotion/{emotion_id}', 'APIController@historiesByEmotionFetch');
+Route::get('/historiesByCountry/{country_code}', 'APIController@historiesByCountryFetch');
