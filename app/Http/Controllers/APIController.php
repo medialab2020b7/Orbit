@@ -158,4 +158,36 @@ class APIController extends Controller
 
         return $cities;
     }
+
+            /**
+     * Update profile
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $name = $request->input('name');
+        $city_id = $request->input('city_id');
+        $description = $request->input('description');
+
+        $user->name = $name;
+        $user->city_id = $city_id;
+        $user->description = $description;
+
+        // Handle the user upload of avatar
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            \Image::make($avatar)->resize(300, 300)->save( public_path('/storage/avatar/' . $filename ) );
+
+            $user->avatar = $filename;
+        }
+
+        $user->save();
+
+        return ['user' => $user->toArray()];
+    }
 }

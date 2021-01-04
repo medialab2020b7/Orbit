@@ -18,34 +18,46 @@ class DatabaseSeeder extends Seeder
         $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
+
+        $portugal = DB::table('countries')->where('name', "Portugal")->first();
+        $state = DB::table('states')->where('country_id',  $portugal->id)->first();
+        $city = DB::table('cities')->where('state_id',  $state->id)->first();
         
         $u1 = DB::table('users')->insertGetId([
             'name' => "Teste 1",
             'email' => "a@a.com",
+            'description' => 'Description of user 1.',
+            'city_id' => $city->id,
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);
         $u2 = DB::table('users')->insertGetId([
             'name' => "Teste 2",
             'email' => "a2@a.com",
+            'description' => 'Description of user 2.',
+            'city_id' => $city->id,
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);
         $u3 = DB::table('users')->insertGetId([
             'name' => "Teste 3",
             'email' => "a3@a.com",
+            'description' => 'Description of user 3.',
+            'city_id' => $city->id,
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);
         $u4 = DB::table('users')->insertGetId([
             'name' => "Teste 4 (No initial message with Teste 1)",
             'email' => "a4@a.com",
+            'description' => 'Description of user 4, without city and country.',
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);
         $u5 = DB::table('users')->insertGetId([
             'name' => "Teste 5 (No history connected to Teste 1)",
             'email' => "a5@a.com",
+            'description' => 'Description of user 5, without city and country.',
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);

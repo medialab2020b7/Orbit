@@ -24,5 +24,6 @@ Route::get('/giojs', 'GioJSController@index')->name('giojs');
 Route::get('/messages', 'ChatsController@index')->name('messages');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 Route::get('/histories', 'HistoryController@index');

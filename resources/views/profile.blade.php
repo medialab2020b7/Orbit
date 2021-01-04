@@ -11,34 +11,44 @@
             <div class="shadow rounded overflow-hidden">
                 <div class="px-4 pt-0 pb-4 cover">
                     <div class="media align-items-end profile-head">
-                        <div class="profile mr-3"><img
-                                src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-                                alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#"
-                                                                                            class="btn btn-outline-dark btn-sm btn-block">Edit
-                                profile</a></div>
+                    <div class="profile mr-3">
+                        <img
+                            src="{{ asset('storage/avatar/' . $user->avatar) }}"
+                            alt="..." width="130" class="rounded mb-2 img-thumbnail"/>
+                        <a href="{{route('profile.edit')}}" class="btn btn-outline-dark btn-sm btn-block">
+                        Edit  profile
+                        </a>
+                    </div>
                         <div class="media-body mb-5 text-white">
-                            <h1 class="mt-0 mb-0">{{ Auth::user()->name }}</h1>
-                            <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2"></i>{{ Auth::user()->email }}</p>
+                            <h1 class="mt-0 mb-0">{{ $user->name }}</h1>
+                            <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2"></i>{{ $user->email }}</p>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-end text-center">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <h5 class="font-weight-bold mb-0 d-block">10</h5><small class="text-muted"> <i
+                                <h5 class="font-weight-bold mb-0 d-block">{{ $histories->count() }}</h5><small class="text-muted"> <i
                                         class="fas fa-image mr-1"></i>Stories</small>
                             </li>
                             <li class="list-inline-item">
-                                <h5 class="font-weight-bold mb-0 d-block">215</h5><small class="text-muted"> <i
+                                <h5 class="font-weight-bold mb-0 d-block">{{ $connections }}</h5><small class="text-muted"> <i
                                         class="fas fa-user mr-1"></i>Connections</small>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="px-4">
+                    <h2 class="mb-0">Localization</h2>
+                    <div class="p-4 rounded shadow-sm">
+                        <p>Country: {{ $country }}</p>
+                        <p>City: {{ $city }}</p>
+                    </div>
+                </div>
+                <div class="px-4">
                     <h2 class="mb-0">About</h2>
                     <div class="p-4 rounded shadow-sm">
-                        <p>Description</p>
+                        <p>{{ $user->description }}</p>
                     </div>
                 </div>
                 <div class="px-4">

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', 'APIController@user');  //?api_token='.$token
+Route::middleware('auth:api')->post('/profile', 'APIController@updateProfile')->name('update-profile');
 
 Route::get('/users', 'APIController@users');
 Route::get('/histories', 'APIController@histories');
