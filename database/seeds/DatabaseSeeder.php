@@ -22,6 +22,16 @@ class DatabaseSeeder extends Seeder
         $portugal = DB::table('countries')->where('name', "Portugal")->first();
         $state = DB::table('states')->where('country_id',  $portugal->id)->first();
         $city = DB::table('cities')->where('state_id',  $state->id)->first();
+
+        $brasil = DB::table('countries')->where('name', "Brazil")->first();
+        $brasil_state = DB::table('states')->where('country_id',  $brasil->id)->first();
+        $brasil_city = DB::table('cities')->where('state_id',  $brasil_state->id)->first();
+        $germany = DB::table('countries')->where('name', "Bolivia")->first();
+        $germany_state = DB::table('states')->where('country_id',  $germany->id)->first();
+        $germany_city = DB::table('cities')->where('state_id',  $germany_state->id)->first();
+        $spain = DB::table('countries')->where('name', "Spain")->first();
+        $spain_state = DB::table('states')->where('country_id',  $spain->id)->first();
+        $spain_city = DB::table('cities')->where('state_id',  $spain_state->id)->first();
         
         $u1 = DB::table('users')->insertGetId([
             'name' => "Teste 1",
@@ -89,8 +99,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $u1,
             'description' => "Essa é a minha história.",
             'history_date' => Carbon::now(),
-            'country' => "Portugal",
-            'city' => "Porto",
+            'city_id' => $city->id,
             'active' => true,
             'emotion_id' => $e1,
         ]);
@@ -98,8 +107,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $u1,
             'description' => "Essa é a minha história 2.",
             'history_date' => Carbon::now(),
-            'country' => "Portugal",
-            'city' => "Lisboa",
+            'city_id' => $city->id,
             'active' => true,
             'emotion_id' => $e2,
         ]);
@@ -107,8 +115,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $u2,
             'description' => "Essa é a minha história 3.",
             'history_date' => Carbon::now(),
-            'country' => "Brasil",
-            'city' => "Curitiba",
+            'city_id' => $brasil_city->id,
             'active' => true,
             'emotion_id' => $e1,
         ]);
@@ -116,8 +123,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $u3,
             'description' => "Essa é a minha história 4.",
             'history_date' => Carbon::now(),
-            'country' => "Alemanha",
-            'city' => "Frankfurt",
+            'city_id' => $germany_city->id,
             'active' => true,
             'emotion_id' => $e2,
         ]);
@@ -125,8 +131,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $u4,
             'description' => "Essa é a minha história 5.",
             'history_date' => Carbon::now(),
-            'country' => "USA",
-            'city' => "New York",
+            'city_id' => $spain_city->id,
             'active' => true,
             'emotion_id' => $e1,
         ]);
@@ -134,8 +139,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $u5,
             'description' => "Essa é a minha história 6.",
             'history_date' => Carbon::now(),
-            'country' => "USA",
-            'city' => "Chicago",
+            'city_id' => $spain_city->id,
             'active' => true,
             'emotion_id' => $e1,
         ]);

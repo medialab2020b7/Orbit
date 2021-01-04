@@ -18,8 +18,7 @@ class CreateHistoriesTable extends Migration
             $table->foreignId('user_id');
             $table->text('description');
             $table->timestamp('history_date');
-            $table->string('country');
-            $table->string('city');
+            $table->integer('city_id'); 
             $table->boolean('active');
             $table->foreignId('emotion_id');
             $table->timestamps();

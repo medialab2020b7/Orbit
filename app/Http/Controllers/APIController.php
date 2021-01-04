@@ -46,7 +46,7 @@ class APIController extends Controller
      */
     public function histories(Request $request)
     {
-        return \App\History::all();
+        return \App\History::with('histories')->with('user')->with('emotion')->get();
     }
 
     /**
