@@ -276,5 +276,5 @@
 <!-- <script src="{{ asset('js/giojs/sample-data.js')}}"></script> -->
 <script src="{{ asset('js/giojs/main.js')}}" defer></script>
 <script src="{{ asset('js/giojs/form.js')}}" defer></script>
-<!-- <script src="{{ asset('js/history/main.js')}}" defer></script> -->
+<script src="{{ asset('js/history/main.js')}}" defer></script>
 @endsection
