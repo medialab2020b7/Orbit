@@ -29,40 +29,4 @@ $(function() {
             else if (err.request) console.log(err.request);
         });
     });*/
-
-    const emotionSelect = $("#emotion_id");
-    const storiesList = $("#historias");
-    let listElementTemplate = storiesList.find(".story");
-
-    function createStoryListElement(data) {
-        const newElemet = listElementTemplate.clone();
-        const storyEmotionName = newElemet.find(".story-emotion-name");
-        const storyDescription = newElemet.find(".story-description");
-        const storyDate = newElemet.find(".story-date");
-        const storyUser = newElemet.find(".story-user");
-        storyEmotionName.text(data.emotion.name);
-        storyDescription.text(data.description);
-        storyDate.text(data.history_date);
-        storyUser.text(data.user.name);
-        storiesList.append(newElemet);
-    }
-
-    emotionSelect.on("change", function() {
-        const emotion = $( "#emotion_id option:selected" ).val();
-
-        if(emotion === "")
-            return;
-
-        axios.get('/api/historiesByEmotion/' + emotion).then(response => {
-            const stories = response.data;
-            storiesList.empty();
-            stories.forEach(e => createStoryListElement(e));
-
-        }).catch(err => {
-            console.log("ERROR Loaded cities");
-            console.log(err);
-            if (err.response) console.log(err.response);
-            else if (err.request) console.log(err.request);
-        });
-    });
 });
