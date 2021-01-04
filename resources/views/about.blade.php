@@ -24,6 +24,18 @@
             padding: 0;
             text-align: center;
         }
+
+        h2 {
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: blue;
+            color: transparent;
+        }
+
+        h5 {
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: red;
+            color: transparent;
+        }
     </style>
 @endsection
 
