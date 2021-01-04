@@ -140,7 +140,7 @@ class APIController extends Controller
 
     public  function  userEmotionHistoriesFetch(Request $request)
     {
-        $story = "OI";
+        $story = $request->id;
 
         return $story;
     }
