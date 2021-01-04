@@ -120,7 +120,7 @@
 
             <!--Filter Dropdowns-->
                 <div class="input-group">
-                    <select class="custom-select" id="inputGroupSelect04">
+                    <select name="emotion_id" class="custom-select" id="emotion_id">
                         <option selected>Choose Emotion</option>
                         @foreach($emotions as $e)
                             <option value="{{$e->id}}">{{$e->name}}</option>
@@ -153,19 +153,17 @@
             <!-- Stories List -->
             <div class="col-md-2">
                 <div class="list-group" id="historias">
-                    @foreach($histories as $h)
                         <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
-                           data-target="#storyDataModal" data-id={{$h->id}}>
+                           data-target="#storyDataModal" >
                             <div class="d-flex w-100 justify-content-between">
-                                <h2 class="mb-1">
-                                    {{ $h->emotion->name ?? 'emotion_not_defined' }}
+                                <h2 class="mb-1 story-emotion-name">
+
                                 </h2>
-                                <small>{{ $h->history_date }}</small>
+                                <small class="story-date"></small>
                             </div>
-                            <p class="mb-1">{{ $h->description }}</p>
-                            <small>{{ $h->user->name }}</small>
+                            <p class="mb-1 story-description"></p>
+                            <small class="story-user"></small>
                         </a>
-                    @endforeach
                 </div>
             </div>
 
