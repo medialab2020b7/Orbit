@@ -28,7 +28,7 @@ $(function() {
                     related: 0.5
             }
         };
-        
+
         return new GIO.Controller( container, configs );
     };
 
@@ -41,17 +41,17 @@ $(function() {
     };
 
     const fetchHistories = () => axios.get('/api/histories').then(response => {
-        console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
+        //console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
         let histories = response.data;
 
         histories.forEach(h => {
             let connections = h.histories;
             connections.forEach(c => {
                 // addConnection();
-                console.log(c);
+                //console.log(c);
             });
         });
-        
+
             //TODO - get cities and countries info with the history info. (maybe use a mutator?)
 
         clearData();

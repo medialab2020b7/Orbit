@@ -1,7 +1,72 @@
 @extends('layouts.app')
 
 @section('head')
-    <!-- CSS Goes Here -->
+    <style>
+        .main {
+            overflow-x: hidden;
+        }
+
+        .modal.show .modal-dialog {
+            transform: translateY(-60%);
+            top: 50%;
+            max-width: calc(100vw / 2);
+            background-color: white;
+            color: black;
+        }
+
+        .modal.show .btn-primary {
+            border: 1px solid black;
+            color: black;
+            background-color: transparent;
+        }
+
+        .modal.show .btn-secondary {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            color: rgba(0, 0, 0, 0.3);
+            background-color: transparent;
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+
+        .modal.show .btn-primary:hover {
+            border: 1px solid blue;
+            color: white;
+            background-color: blue;
+        }
+
+        .modal-content {
+            background-color: transparent;
+        }
+
+        .modal-title {
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+        }
+
+        .modal.show .btn-secondary:hover {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header, .modal-footer {
+            border: none;
+        }
+
+        .list-group {
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+            color: white;
+            font-size: 8pt;
+        }
+
+        .form-control {
+            background-color: transparent;
+            color: black;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -61,7 +126,7 @@
                             <div class="list-group" id="historias">
                                 @foreach($histories as $h)
                                     <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
-                                       data-target="#storyDataModal" data-id={{$h->id}}>
+                                       data-target="#profileStoryModal" data-id={{$h->id}}>
                                         <div class="d-flex w-100 justify-content-between">
                                             <h2 class="mb-1">
                                                 {{ $h->emotion->name ?? 'emotion_not_defined' }}
@@ -74,6 +139,41 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Story Data Modal-->
+                <div class="modal fade" id="profileStoryModal" tabindex="-1" role="dialog"
+                     aria-labelledby="showstory" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title" id="showStory"></h1>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-description">
+
+                                </div>
+                                <div class="modal-story-user">
+
+                                </div>
+                                <div class="modal-story-date">
+
+                                </div>
+                                <div class="modal-story-sound">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="btn-story">See Connections</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
