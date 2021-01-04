@@ -106,7 +106,7 @@
                 </div>
                 <h5 class="font-weight-bold mt-4 mb-3">Madalena Sousa</h5>
                 <p class="text-uppercase blue-text"><strong>MMTIJD</strong></p>
-                <p class="grey-text">Cross Media Designer with a particular interest in human-computer interaction, motion graphics, digital games, data visualization, web design an any technology within these areas. Looking to fuse technology, design and create new things. Bachelor's in Design and Multimedia.</p>
+                <p class="grey-text">Cross Media Designer with a particular interest in HCI, motion graphics, digital games, data visualization an any technology within these areas. Looking to fuse technology and design and create new things. Bachelor's in Design and Multimedia.</p>
                 <ul class="list-unstyled mb-0">
                     <a class="p-2 fa-lg fb-ic">
                         <i class="fab fa-facebook-f blue-text"> </i>
