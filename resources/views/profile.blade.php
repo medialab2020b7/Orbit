@@ -56,19 +56,24 @@
                         <h2 class="mb-0">Stories</h2><a href="#" class="btn btn-link text-muted">Show all</a>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 mb-2 pr-lg-1"><img
-                                src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                                alt="" class="img-fluid rounded shadow-sm"></div>
-                        <div class="col-lg-6 mb-2 pl-lg-1"><img
-                                src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                                alt="" class="img-fluid rounded shadow-sm"></div>
-                        <div class="col-lg-6 pr-lg-1 mb-2"><img
-                                src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                                alt="" class="img-fluid rounded shadow-sm"></div>
-                        <div class="col-lg-6 pl-lg-1"><img
-                                src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-                                alt="" class="img-fluid rounded shadow-sm"></div>
-                    </div>
+                        <!-- Stories List -->
+                        <div class="col-md-12">
+                            <div class="list-group" id="historias">
+                                @foreach($histories as $h)
+                                    <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
+                                       data-target="#storyDataModal" data-id={{$h->id}}>
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h2 class="mb-1">
+                                                {{ $h->emotion->name ?? 'emotion_not_defined' }}
+                                            </h2>
+                                            <small>{{ $h->history_date }}</small>
+                                        </div>
+                                        <p class="mb-1">{{ $h->description }}</p>
+                                        <small>{{ $h->user->name }}</small>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
