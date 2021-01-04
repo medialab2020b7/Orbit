@@ -124,29 +124,14 @@
                         <option selected>Choose Emotion</option>
                         @foreach($emotions as $e)
                             <option value="{{$e->id}}">{{$e->name}}</option>
-                    @endforeach
+                        @endforeach
                     <!-- As emocoes são carregadas da BD. Elas foram criadas hardcoded por meio do Seeder. Checar em "./database/seeds/DatabaseSeeder.php" -->
                     </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Go</button>
-                    </div>
                 </div>
-
-                <!--div class="form-group">
-                    <select name="country_id" class="custom-select" id="country_id">
-                    <option selected>Choose Country</option>
-                    @-foreach($countries as $c)
-                        <option value="</option>
-                    @-endforeach
-                    </select>
-                </div-->
 
                 <div class="input-group">
                     <select name="city_id" class="custom-select" id="city_id" disabled>
                     </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Go</button>
-                    </div>
                 </div>
             </div>
 
