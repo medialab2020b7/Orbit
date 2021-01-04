@@ -138,6 +138,13 @@ class APIController extends Controller
         return ['history' => $history];
     }
 
+    public  function  userEmotionHistoriesFetch(Request $request)
+    {
+        $story = "OI";
+
+        return $story;
+    }
+
     /**
      * Get cities.
      *

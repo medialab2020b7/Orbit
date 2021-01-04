@@ -7,15 +7,13 @@ $(function() {
         const description = $("#description").val();
         const user_id = $("#user_id").val();
         const history_date = $("#history_date").val();
-        const history_month = $("#month").val();
-        const history_year = $("#year").val();
         const country = $("#country").val();
         const city = $("#city").val();
         const active = $("#active").val();
         const emotion_id = $("#emotion_id").val();
 
-        /*const historias = $("#historias");
-        const historiaUm = historias.first();*/
+        const historias = $("#historias");
+        const historiaUm = historias.first();
 
         axios.post("/api/histories", {
             api_token: token,
@@ -30,9 +28,9 @@ $(function() {
             const data = response.data;
             console.log(data);
 
-            /*const novaHistoria = historiaUm.clone();
+            const novaHistoria = historiaUm.clone();
             novaHistoria.text(data.history.description + " - " + data.history.country + " - " + data.history.city);
-            historias.append(novaHistoria);*/
+            historias.append(novaHistoria);
         }).catch(err => {
             console.log(err)
         });
@@ -45,16 +43,16 @@ $(function() {
     $(".story").click(function(e) {
         clickedStoryId = $(this).attr('data-id');
 
-        axios.get("/api/histories").then(response => {
-            const data = response.data;
-            const clickedStory = data[clickedStoryId-1]; //isto pode dar erros, mas tentei de bué formas e n consegui de outra maneira
+        axios.get('/api/historiesById/' + clickedStoryId).then(response => {
+            console.log(response.data);
+            /*const clickedStory = data[clickedStoryId-1]; //isto pode dar erros, mas tentei de bué formas e n consegui de outra maneira e como os ids começam no 1
             console.log(clickedStory);
 
             $("#storyDataModal .modal-title").text(clickedStory.emotion_id);
             $("#storyDataModal .modal-description").text(clickedStory.description);
             $("#storyDataModal .modal-story-user").text(clickedStory.user_id);
             $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
-            $("#storyDataModal .modal-story-sound").text("add sound here");
+            $("#storyDataModal .modal-story-sound").text("add sound here");*/
 
         }).catch(err => {
             console.log(err)
