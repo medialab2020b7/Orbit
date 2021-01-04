@@ -31,12 +31,42 @@
 
   ::-webkit-scrollbar {
     width: 12px;
-    background-color: #F5F5F5;
+    background-color: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
+    background-color: white;
+  }
+
+  .btn-primary {
+      background-color: transparent;
+      border: 1px solid red;
+      -webkit-text-stroke-color: red;
+      -webkit-text-stroke-width: 1px;
+      color: transparent;
+      font-size: 1rem;
+  }
+
+  .btn-primary:hover {
+      background-color: red;
+      border: 1px solid red;
+      color: black;
+      -webkit-text-stroke-width: 0;
+  }
+
+  .btn-primary:active {
+      background-color: red;
+      border: 1px solid red;
+      color: black;
+      -webkit-text-stroke-width: 0;
+  }
+
+  .btn-primary:focus {
+      background-color: red;
+      border: 1px solid red;
+      color: black;
+      -webkit-text-stroke-width: 0;
   }
 </style>
 @endsection
@@ -44,7 +74,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2" style="margin: auto">
             <div class="panel panel-default">
                 <div class="panel-heading">Chat with</div>
 

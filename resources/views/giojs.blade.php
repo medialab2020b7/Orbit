@@ -99,17 +99,6 @@
             border-radius: 0;
         }
 
-        #historias::-webkit-scrollbar {
-            background: transparent;
-            width: 7px;
-            border-radius: 0;
-        }
-
-        #historias::-webkit-scrollbar-thumb {
-            background: white;
-            border-radius: 0;
-        }
-
         .btn-primary {
             background-color: transparent;
             border: 1px solid red;

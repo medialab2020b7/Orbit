@@ -216,6 +216,17 @@
             font-size: 60%;
         }
 
+        ::-webkit-scrollbar {
+            background: transparent;
+            width: 7px;
+            border-radius: 0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: white;
+            border-radius: 0;
+        }
+
     </style>
 
     @yield('head')
