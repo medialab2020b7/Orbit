@@ -70,7 +70,7 @@ class APIController extends Controller
 
         //2 Get all histories from desired Emotion
         //Select one or more of that (try to select from other users only)
-        
+
         //3 Create history and persist to database
         $history = $user->histories()->create([
             //put other params
@@ -154,9 +154,9 @@ class APIController extends Controller
     {
         $storyId = $request->id;
 
-        $story = \App\History::with('user')->with('emotion')->get();
+        $story = \App\History::where('id', $storyId)->with('user')->with('emotion')->get();
 
-        return $story[$storyId-1];
+        return $story;
     }
 
     // public  function  historiesByCountryFetch(Request $request)

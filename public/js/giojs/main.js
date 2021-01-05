@@ -12,6 +12,8 @@ $(function() {
         emotion: ""
     };
 
+    let selectedCountryCode = "PT";
+
     /* Start Globe */
     let controller = null;
 
@@ -81,13 +83,21 @@ $(function() {
             params += `emotion=${filterParams.emotion}`;
         }
 
-        console.log(filterParams); console.log(params);
+        //console.log(filterParams); console.log(params);
 
         axios.get(`/api/histories?${params}`).then(response => {
-            console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
+            //console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
+            let filteredStories = [];
+            histories.forEach(h => {
+                if(h.location.country.code === selectedCountryCode) {
+                    filteredStories.push(h);
+                }
+            });
 
             updateGlobe(histories);
+            storiesList.empty();
+            filteredStories.forEach(e => createStoryListElement(e));
 
         }).catch(err => {
             console.log("ERROR loaded histories");  //Testing
@@ -124,7 +134,8 @@ $(function() {
 
     // On Change country on Globe
     controller.onCountryPicked(function (selectedCountry) {
-        // fetchCities(selectedCountry.ISOCode);
+        selectedCountryCode = selectedCountry.ISOCode;
+        fetchHistories();
     });
 
     //On Emotion Selected
@@ -146,12 +157,15 @@ $(function() {
     // });
 
     //Bootstrap code
-    fetchHistories();
+    fetchHistories(initialCountry);
     // fetchCities(initialCountry);
 
     // Histories
     const createStoryListElement = data => {
         const newElemet = listElementTemplate.clone();
+        if(!newElemet.hasClass("story")) {
+            newElemet.addClass("story");
+        }
         newElemet.attr('data-id', data.id);
         const storyEmotionName = newElemet.find(".story-emotion-name");
         const storyDescription = newElemet.find(".story-description");
@@ -164,22 +178,4 @@ $(function() {
         storiesList.append(newElemet);
     };
 
-    emotionSelect.on("change", function() {
-        const emotion = $( "#emotion_id option:selected").val();
-
-        if(emotion === "")
-            return;
-
-        axios.get('/api/historiesByEmotion/' + emotion).then(response => {
-            const stories = response.data;
-            storiesList.empty();
-            stories.forEach(e => createStoryListElement(e));
-
-        }).catch(err => {
-            console.log("ERROR Loaded cities");
-            console.log(err);
-            if (err.response) console.log(err.response);
-            else if (err.request) console.log(err.request);
-        });
-    });
 });
