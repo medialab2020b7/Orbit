@@ -52,7 +52,6 @@
         }
 
         .input-group {
-            width: calc(100% / 3);
             background-color: transparent;
             margin-top: 10px;
         }
@@ -128,55 +127,57 @@
             color: black;
             -webkit-text-stroke-width: 0;
         }
+
+        .custom-select:disabled {
+            color: white;
+            background-color: transparent;
+        }
     </style>
 @endsection
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div id="globeArea"></div>
-            <!--Filter Dropdowns-->
+            <div class="col-md-2">
+                <!--Filter Dropdowns-->
+                <div
+                    style="text-align: center; -webkit-text-stroke-color: blue; -webkit-text-stroke-width: 1px; color: transparent">
+                    <h2>FILTERS</h2>
+                </div>
                 <div class="input-group">
                     <select name="emotion_id" class="custom-select" id="emotion_id">
                         <option value="" selected>All Emotions</option>
                         @foreach($emotions as $e)
                             <option value="{{$e->id}}">{{$e->name}}</option>
-                        @endforeach
+                    @endforeach
                     <!-- As emocoes são carregadas da BD. Elas foram criadas hardcoded por meio do Seeder. Checar em "./database/seeds/DatabaseSeeder.php" -->
                     </select>
                 </div>
-
-                <!-- <div class="input-group">
-                    <select name="city_id" class="custom-select" id="city_id">
-                    </select>
-                </div> -->
-
-                <!-- <div class="input-group">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" id="form-submit">
-                            Filter
-                        </button>
-                    </span>
-                </div> -->
             </div>
+            <div class="col-md-8">
+                <div id="globeArea">
 
+                </div>
+            </div>
             <!-- Stories List -->
             <div class="col-md-2">
-                <div style="text-align: center; -webkit-text-stroke-color: blue; -webkit-text-stroke-width: 1px; color: transparent"><h2>STORIES</h2></div>
+                <div
+                    style="text-align: center; -webkit-text-stroke-color: blue; -webkit-text-stroke-width: 1px; color: transparent">
+                    <h2>STORIES</h2></div>
                 <div class="list-group" id="historias">
-                        <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
-                           data-target="#storyDataModal">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h2 class="mb-1 story-emotion-name">
+                    <a href="#"
+                       class="story list-group-item list-group-item-action flex-column align-items-start"
+                       data-toggle="modal"
+                       data-target="#storyDataModal">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h2 class="mb-1 story-emotion-name">
 
-                                </h2>
-                                <small class="story-date"></small>
-                            </div>
-                            <p class="mb-1 story-description"></p>
-                            <small class="story-user"></small>
-                        </a>
+                            </h2>
+                            <small class="story-date"></small>
+                        </div>
+                        <p class="mb-1 story-description"></p>
+                        <small class="story-user"></small>
+                    </a>
                 </div>
             @if(Auth::check())
                 <!-- Button trigger modal -->
@@ -219,7 +220,8 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="inputState">
-                                            <input required name="history_date" id="history_date" class="form-control"
+                                            <input required name="history_date" id="history_date"
+                                                   class="form-control"
                                                    type="text"
                                                    placeholder="Date">
                                         </label>
@@ -234,14 +236,16 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputState">
-                                                <input required name="city" id="city" class="form-control" type="text"
+                                                <input required name="city" id="city" class="form-control"
+                                                       type="text"
                                                        placeholder="City">
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
                                     <button type="button" class="btn btn-primary" id="btn-story">Submit</button>
                                 </div>
                             </div>
@@ -288,11 +292,11 @@
 @endsection
 
 @section('body')
-<!-- Gio.js -->
-<script src="{{ asset('js/giojs/three.min.js')}}"></script>
-<script src="{{ asset('js/giojs/gio.min.js')}}"></script>
-<!-- <script src="{{ asset('js/giojs/sample-data.js')}}"></script> -->
-<script src="{{ asset('js/giojs/main.js')}}" defer></script>
-<script src="{{ asset('js/giojs/form.js')}}" defer></script>
-<script src="{{ asset('js/giojs/story.js')}}" defer></script>
+    <!-- Gio.js -->
+    <script src="{{ asset('js/giojs/three.min.js')}}"></script>
+    <script src="{{ asset('js/giojs/gio.min.js')}}"></script>
+    <!-- <script src="{{ asset('js/giojs/sample-data.js')}}"></script> -->
+    <script src="{{ asset('js/giojs/main.js')}}" defer></script>
+    <script src="{{ asset('js/giojs/form.js')}}" defer></script>
+    <script src="{{ asset('js/giojs/story.js')}}" defer></script>
 @endsection
