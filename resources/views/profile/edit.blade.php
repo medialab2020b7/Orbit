@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('head')
-    <!-- CSS Goes Here -->
+    <style>
+        .custom-select, .custom-select option {
+            background-color: black;
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('content')
