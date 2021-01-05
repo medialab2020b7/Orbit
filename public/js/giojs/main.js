@@ -146,7 +146,7 @@ $(function () {
         fetchHistories();   //Because removed submit button
     });
 
-    // USE THIS FUNCTION AFTER CREATING A STORY, SEND IN THE COUNTRY CODE OF THE STORY ----------- SEE HERE
+    // USE THIS FUNCTION AFTER CREATING A STORY, SEND IN THE COUNTRY CODE OF THE STORY ------------- PODES USAR ISTO
     function switchCountryAndUpdateStories(countryCode) {
         controller.switchCountry(countryCode);
         selectedCountryCode = countryCode;
