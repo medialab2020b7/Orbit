@@ -281,7 +281,6 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                 </button>
-                                <button type="button" class="btn btn-primary" id="btn-story">See Connections</button>
                                 <button type="button" class="btn btn-primary" id="btn-chat">Chat</button>
                             </div>
                         </div>
