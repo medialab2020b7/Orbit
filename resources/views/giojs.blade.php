@@ -168,7 +168,7 @@
                     <a href="#"
                        class="story list-group-item list-group-item-action flex-column align-items-start"
                        data-toggle="modal"
-                       data-target="#storyDataModal">
+                       data-target="#storyDataModal" data-id="">
                         <div class="d-flex w-100 justify-content-between">
                             <h2 class="mb-1 story-emotion-name">
 
@@ -281,7 +281,8 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                 </button>
-                                <button type="button" class="btn btn-primary" id="btn-story">Connect</button>
+                                <button type="button" class="btn btn-primary" id="btn-story">See Connections</button>
+                                <button type="button" class="btn btn-primary" id="btn-chat">Chat</button>
                             </div>
                         </div>
                     </div>

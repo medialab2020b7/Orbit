@@ -178,4 +178,25 @@ $(function() {
         storiesList.append(newElemet);
     };
 
+    // Get Selected Story
+    let clickedStoryId = 0;
+    $(".story").click(function(e) {
+        console.log("Clicked on a Story");
+        clickedStoryId = $(this).attr('data-id');
+
+        axios.get('/api/historiesById/' + clickedStoryId).then(response => {
+            const clickedStory = response.data;
+            console.log(clickedStory);
+
+            $("#profileStoryModal .modal-title").text(clickedStory.emotion.name);
+            $("#profileStoryModal .modal-description").text(clickedStory.description);
+            $("#profileStoryModal .modal-story-user").text(clickedStory.user.name);
+            $("#profileStoryModal .modal-story-date").text(clickedStory.history_date);
+            $("#profileStoryModal .modal-story-sound").text("add sound here");
+
+        }).catch(err => {
+            console.log(err)
+        });
+    });
+
 });
