@@ -39,6 +39,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['location'];
+
+    /**
      * A user can have many messages
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -73,6 +80,9 @@ class User extends Authenticatable
      */
     public function getLocationAttribute()
     {
+        if(is_null($this->city_id))
+            return null;
+
         $city = DB::table('cities')->where('id', $this->city_id)->first();
         $state = DB::table('states')->where('id', $city->state_id)->first();
         $country = DB::table('countries')->where('id', $state->country_id)->first();

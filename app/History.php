@@ -15,6 +15,13 @@ class History extends Model
     protected $fillable = ['user_id', 'description', 'history_date', 'city_id', 'active', 'emotion_id'];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['location'];
+
+    /**
      * Get the user who owns the history.
      */
     public function user()
@@ -45,6 +52,9 @@ class History extends Model
      */
     public function getLocationAttribute()
     {
+        if(is_null($this->city_id))
+            return null;
+
         $city = DB::table('cities')->where('id', $this->city_id)->first();
         $state = DB::table('states')->where('id', $city->state_id)->first();
         $country = DB::table('countries')->where('id', $state->country_id)->first();

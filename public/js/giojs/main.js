@@ -1,7 +1,7 @@
 $(function() {
     const container = document.getElementById( "globeArea" );
 
-    let data = [];
+    let controller = null;
 
     const makeController = () => {
         var configs = {
@@ -32,29 +32,23 @@ $(function() {
         return new GIO.Controller( container, configs );
     };
 
-    const clearData = () => {
-        data = [];
-    };
-
-    const addConnection = (e, i, v ) => {
-        data.push({e,i,v});
-    };
-
     const fetchHistories = () => axios.get('/api/histories').then(response => {
-        //console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
+        console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
         let histories = response.data;
+
+        controller.clearData();
+        let data = [];
 
         histories.forEach(h => {
             let connections = h.histories;
+            let e = h.location.country.code;
             connections.forEach(c => {
-                // addConnection();
-                //console.log(c);
+                let i = c.location.country.code;
+                data.push({e,i,v: 100});
             });
         });
 
-            //TODO - get cities and countries info with the history info. (maybe use a mutator?)
-
-        clearData();
+        controller.addData(data);
 
     }).catch(err => {
         console.log("ERROR loaded histories");  //Testing
@@ -63,7 +57,7 @@ $(function() {
         else if (err.request) console.log(err.request);
     });
 
-    let controller = makeController();
+    controller = makeController();
     controller.setInitCountry("PT");
     controller.init();
 

@@ -18,12 +18,8 @@ class TestController extends Controller
      */
     public function index()
     {
-      $user = \Auth::user();
+      $histories = \App\History::all();
 
-      $histories = $user->histories;
-
-      $h = $histories->first();
-
-      dd($h->location);
+      dd($histories);
     }
 }
