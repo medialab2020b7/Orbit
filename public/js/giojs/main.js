@@ -68,7 +68,7 @@ $(function() {
     /* Fetch all histories to make globe connections */
     const fetchHistories = () => {
         let params = "";
-        
+
         // if(filterParams.city !== ""){
         //     if(params.length > 0)
         //         params += "&";
@@ -86,9 +86,9 @@ $(function() {
         axios.get(`/api/histories?${params}`).then(response => {
             console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
-    
+
             updateGlobe(histories);
-    
+
         }).catch(err => {
             console.log("ERROR loaded histories");  //Testing
             console.log(err);
@@ -149,27 +149,6 @@ $(function() {
     fetchHistories();
     // fetchCities(initialCountry);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Histories
     const createStoryListElement = data => {
         const newElemet = listElementTemplate.clone();
@@ -184,4 +163,23 @@ $(function() {
         storyUser.text(data.user.name);
         storiesList.append(newElemet);
     };
+
+    emotionSelect.on("change", function() {
+        const emotion = $( "#emotion_id option:selected").val();
+
+        if(emotion === "")
+            return;
+
+        axios.get('/api/historiesByEmotion/' + emotion).then(response => {
+            const stories = response.data;
+            storiesList.empty();
+            stories.forEach(e => createStoryListElement(e));
+
+        }).catch(err => {
+            console.log("ERROR Loaded cities");
+            console.log(err);
+            if (err.response) console.log(err.response);
+            else if (err.request) console.log(err.request);
+        });
+    });
 });
