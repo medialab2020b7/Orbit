@@ -1,6 +1,18 @@
 $(function() {
     const container = document.getElementById( "globeArea" );
+    // const citySelect = $("#city_id");
+    const emotionSelect = $("#emotion_id");
+    // const formSubmit = $("#form-submit");
+    const storiesList = $("#historias");
+    const listElementTemplate = storiesList.find(".story");
 
+    const initialCountry = "PT";
+    const filterParams = {
+        // city: "",
+        emotion: ""
+    };
+
+    /* Start Globe */
     let controller = null;
 
     const makeController = () => {
@@ -11,7 +23,7 @@ $(function() {
                 lightenMentioned: false,
                 inOnly: false,
                 outOnly: false,
-                initCountry: "PT",
+                initCountry: initialCountry,
                 halo: true
             },
             color: {
@@ -32,10 +44,12 @@ $(function() {
         return new GIO.Controller( container, configs );
     };
 
-    const fetchHistories = () => axios.get('/api/histories').then(response => {
-        console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
-        let histories = response.data;
+    controller = makeController();
+    controller.setInitCountry(initialCountry);
+    controller.init();
 
+    /** Update globe with data */
+    const updateGlobe = (histories) => {
         controller.clearData();
         let data = [];
 
@@ -49,64 +63,115 @@ $(function() {
         });
 
         controller.addData(data);
+    };
 
-    }).catch(err => {
-        console.log("ERROR loaded histories");  //Testing
-        console.log(err);
-        if (err.response) console.log(err.response);
-        else if (err.request) console.log(err.request);
-    });
+    /* Fetch all histories to make globe connections */
+    const fetchHistories = () => {
+        let params = "";
+        
+        // if(filterParams.city !== ""){
+        //     if(params.length > 0)
+        //         params += "&";
+        //     params += `city=${filterParams.city}`;
+        // }
 
-    controller = makeController();
-    controller.setInitCountry("PT");
-    controller.init();
+        if(filterParams.emotion !== ""){
+            if(params.length > 0)
+                params += "&";
+            params += `emotion=${filterParams.emotion}`;
+        }
 
-    fetchHistories();
+        console.log(filterParams); console.log(params);
 
-    //CITY SELECT DATA
-    const citySelect = $("#city_id");
+        axios.get(`/api/histories?${params}`).then(response => {
+            console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
+            let histories = response.data;
+    
+            updateGlobe(histories);
+    
+        }).catch(err => {
+            console.log("ERROR loaded histories");  //Testing
+            console.log(err);
+            if (err.response) console.log(err.response);
+            else if (err.request) console.log(err.request);
+        });
+    };
+
+    //Fetch cities to select
+    // const fetchCities = (countryCode) => {
+    //     citySelect.empty();
+    //     citySelect.prop("disabled", true);
+
+    //     axios.get('/api/cities/' + countryCode).then(response => {
+    //         console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
+    //         const cities = response.data;
+
+    //         //Add to options
+    //         citySelect.append($('<option>').val("").text("All Cities"));
+    //         cities.forEach(c => {
+    //             citySelect.append($('<option>').val(c.id).text(c.name));
+    //         });
+    //         citySelect.prop("disabled", false);
+
+
+    //     }).catch(err => {
+    //         console.log("ERROR Loaded cities");
+    //         console.log(err);
+    //         if (err.response) console.log(err.response);
+    //         else if (err.request) console.log(err.request);
+    //     });
+    // };
+
+    // On Change country on Globe
     controller.onCountryPicked(function (selectedCountry) {
-
-        citySelect.empty();
-        citySelect.prop("disabled", true);
-
-        axios.get('/api/cities/' + selectedCountry.ISOCode).then(response => {
-            //console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
-            const cities = response.data;
-
-            //Add to options
-            citySelect.prop("disabled", false);
-            cities.forEach(c => {
-                citySelect.append($('<option>').val(c.code).text(c.name));
-            });
-
-
-        }).catch(err => {
-            console.log("ERROR Loaded cities");
-            console.log(err);
-            if (err.response) console.log(err.response);
-            else if (err.request) console.log(err.request);
-        });
-
-        axios.get('/api/historiesByCountry/' + selectedCountry.ISOCode).then(response => {
-            const stories = response.data;
-            storiesList.empty();
-            stories.forEach(e => createStoryListElement(e));
-
-        }).catch(err => {
-            console.log("ERROR Loaded cities");
-            console.log(err);
-            if (err.response) console.log(err.response);
-            else if (err.request) console.log(err.request);
-        });
+        // fetchCities(selectedCountry.ISOCode);
     });
 
-    //EMOTION FILTER
-    const emotionSelect = $("#emotion_id");
-    const storiesList = $("#historias");
-    let listElementTemplate = storiesList.find(".story");
+    //On Emotion Selected
+    emotionSelect.on("change", function() {
+        const emotion = $( "#emotion_id option:selected" ).val();
+        filterParams.emotion = emotion;
+        fetchHistories();   //Because removed submit button
+    });
 
-    function createStoryListElement(data) {
+    //On City Selected
+    // citySelect.on("change", function() {
+    //     const city = $( "#city_id option:selected" ).val();
+    //     filterParams.city = city;
+    // });
+
+    //On Submit Filter
+    // formSubmit.on( "click", function() {
+    //     fetchHistories();
+    // });
+
+    //Bootstrap code
+    fetchHistories();
+    // fetchCities(initialCountry);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Histories
+    const createStoryListElement = data => {
         const newElemet = listElementTemplate.clone();
         newElemet.attr('data-id', data.id);
         const storyEmotionName = newElemet.find(".story-emotion-name");
@@ -118,25 +183,5 @@ $(function() {
         storyDate.text(data.history_date);
         storyUser.text(data.user.name);
         storiesList.append(newElemet);
-    }
-
-    emotionSelect.on("change", function() {
-        const emotion = $( "#emotion_id option:selected" ).val();
-
-        if(emotion === "")
-            return;
-
-        axios.get('/api/historiesByEmotion/' + emotion).then(response => {
-            const stories = response.data;
-            storiesList.empty();
-            stories.forEach(e => createStoryListElement(e));
-
-        }).catch(err => {
-            console.log("ERROR Loaded cities");
-            console.log(err);
-            if (err.response) console.log(err.response);
-            else if (err.request) console.log(err.request);
-        });
-    });
-
+    };
 });

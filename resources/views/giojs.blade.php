@@ -140,7 +140,7 @@
             <!--Filter Dropdowns-->
                 <div class="input-group">
                     <select name="emotion_id" class="custom-select" id="emotion_id">
-                        <option selected>Choose Emotion</option>
+                        <option value="" selected>All Emotions</option>
                         @foreach($emotions as $e)
                             <option value="{{$e->id}}">{{$e->name}}</option>
                         @endforeach
@@ -148,10 +148,18 @@
                     </select>
                 </div>
 
-                <div class="input-group">
-                    <select name="city_id" class="custom-select" id="city_id" disabled>
+                <!-- <div class="input-group">
+                    <select name="city_id" class="custom-select" id="city_id">
                     </select>
-                </div>
+                </div> -->
+
+                <!-- <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm" id="form-submit">
+                            Filter
+                        </button>
+                    </span>
+                </div> -->
             </div>
 
             <!-- Stories List -->

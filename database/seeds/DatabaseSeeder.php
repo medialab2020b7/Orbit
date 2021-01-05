@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
         $spain = DB::table('countries')->where('name', "Spain")->first();
         $spain_state = DB::table('states')->where('country_id',  $spain->id)->first();
         $spain_city = DB::table('cities')->where('state_id',  $spain_state->id)->first();
+        $italy = DB::table('countries')->where('name', "Italy")->first();
+        $italy_state = DB::table('states')->where('country_id',  $italy->id)->first();
+        $italy_city = DB::table('cities')->where('state_id',  $italy_state->id)->first();
         
         $u1 = DB::table('users')->insertGetId([
             'name' => "Teste 1",
@@ -69,6 +72,14 @@ class DatabaseSeeder extends Seeder
             'name' => "Teste 5 (No history connected to Teste 1)",
             'email' => "a5@a.com",
             'description' => 'Description of user 5, without city and country.',
+            'city_id' => null,
+            'password' => Hash::make('senha123'),
+            'api_token' => Str::random(80),
+        ]);
+        $u6 = DB::table('users')->insertGetId([
+            'name' => "Teste 6 (Connected to user 1 with emotion 2)",
+            'email' => "a6@a.com",
+            'description' => 'Description of user 6, without city and country.',
             'city_id' => null,
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
@@ -127,7 +138,7 @@ class DatabaseSeeder extends Seeder
             'history_date' => Carbon::now(),
             'city_id' => $germany_city->id,
             'active' => true,
-            'emotion_id' => $e2,
+            'emotion_id' => $e1,
         ]);
         $h5 = DB::table('histories')->insertGetId([
             'user_id' => $u4,
@@ -153,6 +164,22 @@ class DatabaseSeeder extends Seeder
             'active' => true,
             'emotion_id' => $e2,
         ]);
+        $h8 = DB::table('histories')->insertGetId([
+            'user_id' => $u1,
+            'description' => "Essa é a minha história.",
+            'history_date' => Carbon::now(),
+            'city_id' => $city->id,
+            'active' => true,
+            'emotion_id' => $e2,
+        ]);
+        $h9 = DB::table('histories')->insertGetId([
+            'user_id' => $u6,
+            'description' => "Essa é a minha história.",
+            'history_date' => Carbon::now(),
+            'city_id' => $italy_city->id,
+            'active' => true,
+            'emotion_id' => $e2,
+        ]);
 
         DB::table('history_history')->insert([
             'history_one' => $h1,
@@ -169,6 +196,10 @@ class DatabaseSeeder extends Seeder
         DB::table('history_history')->insert([
             'history_one' => $h3,
             'history_two' => $h5
+        ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h8,
+            'history_two' => $h9
         ]);
     }
 }

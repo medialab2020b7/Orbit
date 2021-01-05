@@ -46,7 +46,14 @@ class APIController extends Controller
      */
     public function histories(Request $request)
     {
-        return \App\History::with('histories')->with('user')->with('emotion')->get();
+        $stories = \App\History::with('emotion')->with('user')->with('histories')
+        ->whereHas('emotion', function($q) use($request) {
+            if($request->has('emotion'))
+                $q->where('id', $request->input('emotion'));
+        })
+        ->get();
+
+        return $stories;
     }
 
     /**
@@ -125,23 +132,23 @@ class APIController extends Controller
         return $story[$storyId-1];
     }
 
-    public  function  historiesByCountryFetch(Request $request)
-    {
-        $countryCode = $request->country_code;
-        $countries = DB::table('countries')->where('code', $countryCode)->first();
+    // public  function  historiesByCountryFetch(Request $request)
+    // {
+    //     $countryCode = $request->country_code;
+    //     $countries = DB::table('countries')->where('code', $countryCode)->first();
 
-        $stories = \App\History::where('country', $countries->name)->with('emotion')->with('user')->get();
+    //     $stories = \App\History::where('country', $countries->name)->with('emotion')->with('user')->get();
 
-        return $stories;
-    }
+    //     return $stories;
+    // }
 
-    public function historiesByEmotionFetch(Request $request)
-    {
-        $emotionId = $request->emotion_id;
-        $stories = \App\History::where('emotion_id', $emotionId)->with('emotion')->with('user')->get();
+    // public function historiesByEmotionFetch(Request $request)
+    // {
+    //     $emotionId = $request->emotion_id;
+    //     $stories = \App\History::where('emotion_id', $emotionId)->with('emotion')->with('user')->get();
 
-        return $stories;
-    }
+    //     return $stories;
+    // }
 
     /**
      * Get cities.
