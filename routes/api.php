@@ -18,7 +18,10 @@ Route::middleware('auth:api')->get('/user', 'APIController@user');  //?api_token
 Route::middleware('auth:api')->post('/profile', 'APIController@updateProfile')->name('update-profile');
 
 Route::get('/users', 'APIController@users');
+
 Route::get('/histories', 'APIController@histories');
+Route::middleware('auth:api')->post('/histories', 'APIController@historiesCreate');
+
 Route::get('/emotions', 'APIController@emotions');
 
 Route::middleware('auth:api')->get('/messages', 'APIController@messagesFetch');

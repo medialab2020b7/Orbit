@@ -56,6 +56,33 @@ class APIController extends Controller
         return $stories;
     }
 
+        /**
+     * Persist history to database
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function historiesCreate(Request $request)
+    {
+        $user = Auth::user();
+
+        //1 Get params from request
+
+        //2 Get all histories from desired Emotion
+        //Select one or more of that (try to select from other users only)
+        
+        //3 Create history and persist to database
+        $history = $user->histories()->create([
+            //put other params
+        ]);
+
+        //4 Create connection with selected histories (from 2)
+
+        //Return created history
+
+        return $history;
+    }
+
     /**
      * Get emotions.
      *
