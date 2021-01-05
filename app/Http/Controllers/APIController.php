@@ -36,7 +36,7 @@ class APIController extends Controller
      */
     public function users(Request $request)
     {
-        return \App\User::all();
+        return \App\User::with('histories')->get();
     }
 
     /**
@@ -56,7 +56,7 @@ class APIController extends Controller
      */
     public function emotions(Request $request)
     {
-        return \App\Emotion::all();
+        return \App\Emotion::with('histories')->get();
     }
 
     /**
@@ -114,28 +114,6 @@ class APIController extends Controller
         broadcast(new MessageSent($user, $message))->toOthers();
 
         return ['message' => $message, 'user' => $message->user, 'receiver' => $message->receiver];
-    }
-
-        /**
-     * Persist message to database
-     *
-     * @param  Request $request
-     * @return Response
-     */
-    public function historiesCreate(Request $request)
-    {
-        $history = new \App\History;
-        $history->user_id = $request->input('user_id');
-        $history->description = $request->input('description');
-        $history->history_date = $request->input('history_date');
-        $history->country = $request->input('country');
-        $history->city = $request->input('city');
-        $history->active = $request->input('active');
-        $history->emotion_id = $request->input('emotion_id');
-
-        $history->save();
-
-        return ['history' => $history];
     }
 
     public  function  userEmotionHistoriesFetch(Request $request)

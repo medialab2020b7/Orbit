@@ -6,7 +6,7 @@
 
                 <div class="panel-body" id="historias">
                     @foreach($histories as $h)
-                        <p>{{ $h->description }} - {{ $h->country }} - {{ $h->city }}</p>
+                        <p>{{ $h->description }} - {{ $h->location->country->name }} - {{ $h->location->city->name }}</p>
                     @endforeach
                 </div>
 
