@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'city_id'
     ];
 
     /**
@@ -63,5 +64,23 @@ class User extends Authenticatable
     public function histories()
     {
         return $this->hasMany(History::class);
+    }
+
+    /**
+     * Get full location.
+     *
+     * @return string
+     */
+    public function getLocationAttribute()
+    {
+        $city = DB::table('cities')->where('id', $this->city_id)->first();
+        $state = DB::table('states')->where('id', $city->state_id)->first();
+        $country = DB::table('countries')->where('id', $state->country_id)->first();
+
+        return [
+            'country' => $country,
+            'state' => $state,
+            'city' => $city
+        ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class History extends Model
 {
@@ -11,7 +12,7 @@ class History extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'description', 'history_date', 'country', 'city', 'active', 'emotion_id'];
+    protected $fillable = ['user_id', 'description', 'history_date', 'city_id', 'active', 'emotion_id'];
 
     /**
      * Get the user who owns the history.
@@ -35,5 +36,23 @@ class History extends Model
     public function histories()
     {
         return $this->belongsToMany(History::class, "history_history", "history_one", "history_two");
+    }
+
+    /**
+     * Get full location.
+     *
+     * @return string
+     */
+    public function getLocationAttribute()
+    {
+        $city = DB::table('cities')->where('id', $this->city_id)->first();
+        $state = DB::table('states')->where('id', $city->state_id)->first();
+        $country = DB::table('countries')->where('id', $state->country_id)->first();
+
+        return [
+            'country' => $country,
+            'state' => $state,
+            'city' => $city
+        ];
     }
 }

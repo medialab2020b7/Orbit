@@ -27,3 +27,5 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 Route::get('/histories', 'HistoryController@index');
+
+Route::get('/test', 'TestController@index');
