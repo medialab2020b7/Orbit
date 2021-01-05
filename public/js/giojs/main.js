@@ -13,7 +13,6 @@ $(function () {
     };
 
     let selectedCountryCode = "PT";
-    let storyElements = $(".story");
     let chatButton = $("#btn-chat");
 
     /* Start Globe */
@@ -178,26 +177,22 @@ $(function () {
         storyDate.text(data.history_date);
         storyUser.text(data.user.name);
         storiesList.append(newElemet);
-        storyElements = $(".story");
     };
 
     // Get Selected Story
-
-    let clickedStoryId = 0;
-
-    storyElements.click(function (e) {
+    storiesList.on('click', 'a.story', function () {
         console.log("Clicked on a Story");
-        clickedStoryId = storyElements.attr('data-id');
+        let clickedStoryId = $(this).attr('data-id');
 
         axios.get('/api/historiesById/' + clickedStoryId).then(response => {
             const clickedStory = response.data;
             console.log(clickedStory);
 
-            $("#profileStoryModal .modal-title").text(clickedStory.emotion.name);
-            $("#profileStoryModal .modal-description").text(clickedStory.description);
-            $("#profileStoryModal .modal-story-user").text(clickedStory.user.name);
-            $("#profileStoryModal .modal-story-date").text(clickedStory.history_date);
-            $("#profileStoryModal .modal-story-sound").text("add sound here");
+            $("#storyDataModal .modal-title").text(clickedStory.emotion.name);
+            $("#storyDataModal .modal-description").text(clickedStory.description);
+            $("#storyDataModal .modal-story-user").text(clickedStory.user.name);
+            $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
+            $("#storyDataModal .modal-story-sound").text("add sound here");
 
         }).catch(err => {
             console.log(err)
