@@ -1,5 +1,5 @@
-$(function() {
-    const container = document.getElementById( "globeArea" );
+$(function () {
+    const container = document.getElementById("globeArea");
     // const citySelect = $("#city_id");
     const emotionSelect = $("#emotion_id");
     // const formSubmit = $("#form-submit");
@@ -13,6 +13,8 @@ $(function() {
     };
 
     let selectedCountryCode = "PT";
+    let storyElements = $(".story");
+    let chatButton = $("#btn-chat");
 
     /* Start Globe */
     let controller = null;
@@ -29,21 +31,21 @@ $(function() {
                 halo: true
             },
             color: {
-                    surface: 0xFFFFFF,
-                    selected: null,
-                    in: 0x154492,
-                    out: 0xDD380C,
-                    halo: 0xFFFFFF,
-                    background: null
+                surface: 0xFFFFFF,
+                selected: null,
+                in: 0x154492,
+                out: 0xDD380C,
+                halo: 0xFFFFFF,
+                background: null
             },
             brightness: {
-                    ocean: 0.5,
-                    mentioned: 0.5,
-                    related: 0.5
+                ocean: 0.5,
+                mentioned: 0.5,
+                related: 0.5
             }
         };
 
-        return new GIO.Controller( container, configs );
+        return new GIO.Controller(container, configs);
     };
 
     controller = makeController();
@@ -60,7 +62,7 @@ $(function() {
             let e = h.location.country.code;
             connections.forEach(c => {
                 let i = c.location.country.code;
-                data.push({e,i,v: 100});
+                data.push({e, i, v: 100});
             });
         });
 
@@ -77,8 +79,8 @@ $(function() {
         //     params += `city=${filterParams.city}`;
         // }
 
-        if(filterParams.emotion !== ""){
-            if(params.length > 0)
+        if (filterParams.emotion !== "") {
+            if (params.length > 0)
                 params += "&";
             params += `emotion=${filterParams.emotion}`;
         }
@@ -90,7 +92,7 @@ $(function() {
             let histories = response.data;
             let filteredStories = [];
             histories.forEach(h => {
-                if(h.location.country.code === selectedCountryCode) {
+                if (h.location.country.code === selectedCountryCode) {
                     filteredStories.push(h);
                 }
             });
@@ -139,8 +141,8 @@ $(function() {
     });
 
     //On Emotion Selected
-    emotionSelect.on("change", function() {
-        const emotion = $( "#emotion_id option:selected" ).val();
+    emotionSelect.on("change", function () {
+        const emotion = $("#emotion_id option:selected").val();
         filterParams.emotion = emotion;
         fetchHistories();   //Because removed submit button
     });
@@ -163,7 +165,7 @@ $(function() {
     // Histories
     const createStoryListElement = data => {
         const newElemet = listElementTemplate.clone();
-        if(!newElemet.hasClass("story")) {
+        if (!newElemet.hasClass("story")) {
             newElemet.addClass("story");
         }
         newElemet.attr('data-id', data.id);
@@ -176,13 +178,16 @@ $(function() {
         storyDate.text(data.history_date);
         storyUser.text(data.user.name);
         storiesList.append(newElemet);
+        storyElements = $(".story");
     };
 
     // Get Selected Story
+
     let clickedStoryId = 0;
-    $(".story").click(function(e) {
+
+    storyElements.click(function (e) {
         console.log("Clicked on a Story");
-        clickedStoryId = $(this).attr('data-id');
+        clickedStoryId = storyElements.attr('data-id');
 
         axios.get('/api/historiesById/' + clickedStoryId).then(response => {
             const clickedStory = response.data;
@@ -199,4 +204,11 @@ $(function() {
         });
     });
 
+
+    chatButton.click(function () {
+        window.location.replace("../messages");
+    });
+
 });
+
+
