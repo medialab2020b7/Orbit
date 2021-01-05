@@ -12,6 +12,8 @@ $(function() {
         emotion: ""
     };
 
+    let selectedCountryCode = "PT";
+
     /* Start Globe */
     let controller = null;
 
@@ -86,10 +88,16 @@ $(function() {
         axios.get(`/api/histories?${params}`).then(response => {
             //console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
+            let filteredStories = [];
+            histories.forEach(h => {
+                if(h.location.country.code === selectedCountryCode) {
+                    filteredStories.push(h);
+                }
+            });
 
             updateGlobe(histories);
             storiesList.empty();
-            histories.forEach(e => createStoryListElement(e));
+            filteredStories.forEach(e => createStoryListElement(e));
 
         }).catch(err => {
             console.log("ERROR loaded histories");  //Testing
@@ -126,7 +134,8 @@ $(function() {
 
     // On Change country on Globe
     controller.onCountryPicked(function (selectedCountry) {
-        //fetchHistories();
+        selectedCountryCode = selectedCountry.ISOCode;
+        fetchHistories();
     });
 
     //On Emotion Selected
@@ -148,7 +157,7 @@ $(function() {
     // });
 
     //Bootstrap code
-    fetchHistories();
+    fetchHistories(initialCountry);
     // fetchCities(initialCountry);
 
     // Histories
