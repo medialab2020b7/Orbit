@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Message;
 use Illuminate\Http\Request;
 
-class HistoryController extends Controller
+class TestController extends Controller
 {
     public function __construct()
     {
@@ -21,6 +20,6 @@ class HistoryController extends Controller
     {
       $histories = \App\History::all();
 
-        return view('history')->with('histories', $histories);
+      dd($histories);
     }
 }

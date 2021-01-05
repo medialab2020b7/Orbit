@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'city_id'
     ];
 
     /**
@@ -36,6 +37,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['location'];
 
     /**
      * A user can have many messages
@@ -63,5 +71,26 @@ class User extends Authenticatable
     public function histories()
     {
         return $this->hasMany(History::class);
+    }
+
+    /**
+     * Get full location.
+     *
+     * @return string
+     */
+    public function getLocationAttribute()
+    {
+        if(is_null($this->city_id))
+            return null;
+
+        $city = DB::table('cities')->where('id', $this->city_id)->first();
+        $state = DB::table('states')->where('id', $city->state_id)->first();
+        $country = DB::table('countries')->where('id', $state->country_id)->first();
+
+        return [
+            'country' => $country,
+            'state' => $state,
+            'city' => $city
+        ];
     }
 }

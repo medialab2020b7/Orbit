@@ -61,6 +61,7 @@ class DatabaseSeeder extends Seeder
             'name' => "Teste 4 (No initial message with Teste 1)",
             'email' => "a4@a.com",
             'description' => 'Description of user 4, without city and country.',
+            'city_id' => null,
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);
@@ -68,6 +69,7 @@ class DatabaseSeeder extends Seeder
             'name' => "Teste 5 (No history connected to Teste 1)",
             'email' => "a5@a.com",
             'description' => 'Description of user 5, without city and country.',
+            'city_id' => null,
             'password' => Hash::make('senha123'),
             'api_token' => Str::random(80),
         ]);
@@ -143,6 +145,14 @@ class DatabaseSeeder extends Seeder
             'active' => true,
             'emotion_id' => $e1,
         ]);
+        $h7 = DB::table('histories')->insertGetId([
+            'user_id' => $u3,
+            'description' => "Essa é a minha história 7.",
+            'history_date' => Carbon::now(),
+            'city_id' => $city->id,
+            'active' => true,
+            'emotion_id' => $e2,
+        ]);
 
         DB::table('history_history')->insert([
             'history_one' => $h1,
@@ -154,6 +164,10 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('history_history')->insert([
             'history_one' => $h1,
+            'history_two' => $h5
+        ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h3,
             'history_two' => $h5
         ]);
     }
