@@ -1,9 +1,9 @@
-$(function() {
+$(function () {
     const token = $("#token").val();
 
     const botaoClicar = $("#btn-story");
 
-    botaoClicar.on("click", function(){
+    botaoClicar.on("click", function () {
         const description = $("#description").val();
         const user_id = $("#user_id").val();
         const history_date = $("#history_date").val();
@@ -39,22 +39,27 @@ $(function() {
 
     });
 
-    let clickedStoryId = 0;
-    $(".story").click(function(e) {
+    let clickedStoryId;
+
+    $(".story").click(function () {
         clickedStoryId = $(this).attr('data-id');
+        console.log("ENTROU");
 
-        axios.get('/api/historiesById/' + clickedStoryId).then(response => {
-            const clickedStory = response.data;
-            console.log("Clicked on this story: " + clickedStory);
+        if (clickedStoryId !== undefined) {
+            axios.get('/api/historiesById/' + clickedStoryId).then(response => {
+                const clickedStory = response.data;
+                console.log("Clicked on this story: " + clickedStory);
 
-            $("#storyDataModal .modal-title").text(clickedStory.emotion.name);
-            $("#storyDataModal .modal-description").text(clickedStory.description);
-            $("#storyDataModal .modal-story-user").text(clickedStory.user.name);
-            $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
-            $("#storyDataModal .modal-story-sound").text("add sound here");
+                $("#storyDataModal .modal-title").text(clickedStory.emotion.name);
+                $("#storyDataModal .modal-description").text(clickedStory.description);
+                $("#storyDataModal .modal-story-user").text(clickedStory.user.name);
+                $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
+                $("#storyDataModal .modal-story-sound").text("add sound here");
 
-        }).catch(err => {
-            console.log(err)
-        });
+            }).catch(err => {
+                console.log(err)
+            });
+        }
     });
 });
+

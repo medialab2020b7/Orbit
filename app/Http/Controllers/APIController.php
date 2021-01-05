@@ -154,9 +154,9 @@ class APIController extends Controller
     {
         $storyId = $request->id;
 
-        $story = \App\History::with('user')->with('emotion')->get();
+        $story = \App\History::where('id', $storyId)->with('user')->with('emotion')->get();
 
-        return $story[$storyId-1];
+        return $story;
     }
 
     // public  function  historiesByCountryFetch(Request $request)

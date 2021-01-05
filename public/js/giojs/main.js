@@ -81,10 +81,10 @@ $(function() {
             params += `emotion=${filterParams.emotion}`;
         }
 
-        console.log(filterParams); console.log(params);
+        //console.log(filterParams); console.log(params);
 
         axios.get(`/api/histories?${params}`).then(response => {
-            console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
+            //console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
 
             updateGlobe(histories);
@@ -154,6 +154,9 @@ $(function() {
     // Histories
     const createStoryListElement = data => {
         const newElemet = listElementTemplate.clone();
+        if(!newElemet.hasClass("story")) {
+            newElemet.addClass("story");
+        }
         newElemet.attr('data-id', data.id);
         const storyEmotionName = newElemet.find(".story-emotion-name");
         const storyDescription = newElemet.find(".story-description");
