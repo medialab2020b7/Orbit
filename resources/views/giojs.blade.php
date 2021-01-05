@@ -10,12 +10,6 @@
             color: black;
         }
 
-        .modal.show .btn-primary {
-            border: 1px solid black;
-            color: black;
-            background-color: transparent;
-        }
-
         .modal.show .btn-secondary {
             border: 1px solid rgba(0, 0, 0, 0.3);
             color: rgba(0, 0, 0, 0.3);
@@ -24,9 +18,7 @@
         }
 
         .modal.show .btn-primary:hover {
-            border: 1px solid blue;
             color: white;
-            background-color: blue;
         }
 
         .modal-content {
@@ -101,6 +93,41 @@
             color: black;
         }
 
+        #historias {
+            height: 50%;
+            border: 1px solid white;
+            border-radius: 0;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            border: 1px solid red;
+            -webkit-text-stroke-color: red;
+            -webkit-text-stroke-width: 1px;
+            color: transparent;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: red;
+            border: 1px solid red;
+            color: black;
+            -webkit-text-stroke-width: 0;
+        }
+
+        .btn-primary:active {
+            background-color: red;
+            border: 1px solid red;
+            color: black;
+            -webkit-text-stroke-width: 0;
+        }
+
+        .btn-primary:focus {
+            background-color: red;
+            border: 1px solid red;
+            color: black;
+            -webkit-text-stroke-width: 0;
+        }
     </style>
 @endsection
 
@@ -110,51 +137,29 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div id="globeArea"></div>
-            @if(Auth::check())
-                <!-- Button trigger modal -->
-                    <button id="submitStoryButton" type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#submitStoryModal">
-                        Tell My Story
-                    </button>
-            @endif
-
             <!--Filter Dropdowns-->
                 <div class="input-group">
                     <select name="emotion_id" class="custom-select" id="emotion_id">
                         <option selected>Choose Emotion</option>
                         @foreach($emotions as $e)
                             <option value="{{$e->id}}">{{$e->name}}</option>
-                    @endforeach
+                        @endforeach
                     <!-- As emocoes são carregadas da BD. Elas foram criadas hardcoded por meio do Seeder. Checar em "./database/seeds/DatabaseSeeder.php" -->
-                    </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Go</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <select name="country_id" class="custom-select" id="country_id">
-                    <option selected>Choose Country</option>
-                    @foreach($countries as $c)
-                        <option value="{{$c->id}}">{{$c->name}}</option>
-                    @endforeach
                     </select>
                 </div>
 
                 <div class="input-group">
                     <select name="city_id" class="custom-select" id="city_id" disabled>
                     </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Go</button>
-                    </div>
                 </div>
             </div>
 
             <!-- Stories List -->
             <div class="col-md-2">
+                <div style="text-align: center; -webkit-text-stroke-color: blue; -webkit-text-stroke-width: 1px; color: transparent"><h2>STORIES</h2></div>
                 <div class="list-group" id="historias">
                         <a href="#" class="story list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal"
-                           data-target="#storyDataModal" >
+                           data-target="#storyDataModal">
                             <div class="d-flex w-100 justify-content-between">
                                 <h2 class="mb-1 story-emotion-name">
 
@@ -165,6 +170,13 @@
                             <small class="story-user"></small>
                         </a>
                 </div>
+            @if(Auth::check())
+                <!-- Button trigger modal -->
+                    <button id="submitStoryButton" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#submitStoryModal" style="width: 100%">
+                        TELL MY STORY
+                    </button>
+                @endif
             </div>
 
 
