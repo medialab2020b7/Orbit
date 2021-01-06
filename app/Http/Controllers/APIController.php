@@ -82,6 +82,12 @@ class APIController extends Controller
 
         $h->histories()->saveMany($histories_to_connect);
 
+        $histories_to_connect->each(function ($item, $key) use($h) {
+            $item->histories()->save($h);
+            $item->refresh();
+            $item->load('histories');
+        });
+
         $h->refresh();
 
         $h->load('histories');
@@ -160,7 +166,7 @@ class APIController extends Controller
     {
         $storyId = $request->id;
 
-        $story = \App\History::with('user')->with('emotion')->get();
+        $story = \App\History::with('user')->with('emotion')->with('histories')->get();
 
         return $story[$storyId-1];
     }

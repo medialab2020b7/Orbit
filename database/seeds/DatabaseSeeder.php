@@ -186,20 +186,44 @@ class DatabaseSeeder extends Seeder
             'history_two' => $h3
         ]);
         DB::table('history_history')->insert([
+            'history_one' => $h3,
+            'history_two' => $h1
+        ]);
+
+        DB::table('history_history')->insert([
             'history_one' => $h1,
             'history_two' => $h4
         ]);
         DB::table('history_history')->insert([
+            'history_one' => $h4,
+            'history_two' => $h1
+        ]);
+
+        DB::table('history_history')->insert([
             'history_one' => $h1,
             'history_two' => $h5
         ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h5,
+            'history_two' => $h1
+        ]);
+
         DB::table('history_history')->insert([
             'history_one' => $h3,
             'history_two' => $h5
         ]);
         DB::table('history_history')->insert([
+            'history_one' => $h5,
+            'history_two' => $h3
+        ]);
+
+        DB::table('history_history')->insert([
             'history_one' => $h8,
             'history_two' => $h9
+        ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h9,
+            'history_two' => $h8
         ]);
     }
 }

@@ -11,11 +11,14 @@ $(function () {
     const initialCountry = "PT";
     const filterParams = {
         // city: "",
-        emotion: ""
+        emotion: "",
+        baseHistories: [],
+        selectedOnModal: null
     };
 
     let selectedCountryCode = "PT";
-    let chatButton = $("#btn-chat");
+    const chatButton = $("#btn-chat");
+    const showOnMapButton = $("#btn-onmap");
 
     const botaoClicar = $("#btn-story");
 
@@ -98,13 +101,21 @@ $(function () {
             console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
             let filteredStories = [];
+            let bhs = filterParams.baseHistories;
             histories.forEach(h => {
                 if (h.location.country.code === selectedCountryCode) {
-                    filteredStories.push(h);
+                    if(bhs.length == 0)
+                        filteredStories.push(h);
+                    else {
+                        bhs.forEach(b => {
+                            if(b.id == h.id)
+                                filteredStories.push(h);
+                        });
+                    }
                 }
             });
 
-            updateGlobe(histories);
+            updateGlobe(filteredStories);
             storiesList.empty();
             filteredStories.forEach(e => createStoryListElement(e));
 
@@ -144,6 +155,19 @@ $(function () {
     // On Change country on Globe
     controller.onCountryPicked(function (selectedCountry) {
         selectedCountryCode = selectedCountry.ISOCode;
+
+        let hasBase = filterParams.baseHistories.length > 0;
+
+        //If there is a base collection of histories, only show fro them
+        filterParams.baseHistories = filterParams.baseHistories.filter(h => {
+            if(h.location.country.code == selectedCountryCode)
+                return true;
+            return false;
+        });
+
+        if(hasBase && filterParams.baseHistories.length == 0)
+            alert("There is no connected history to current history. Showing all histories on that location.");
+
         fetchHistories();
     });
 
@@ -151,15 +175,12 @@ $(function () {
     emotionSelect.on("change", function () {
         const emotion = $("#emotion_id option:selected").val();
         filterParams.emotion = emotion;
+        filterParams.baseHistories = [];   //Reset selected history
         fetchHistories();   //Because removed submit button
     });
 
     // USE THIS FUNCTION AFTER CREATING A STORY, SEND IN THE COUNTRY CODE OF THE STORY ------------- PODES USAR ISTO
     function switchCountryAndUpdateStories(countryCode, emotionId) {
-        // controller.switchCountry(countryCode);
-        // selectedCountryCode = countryCode;
-        // fetchHistories();
-
         //Sync globe
         selectedCountryCode = countryCode;
         controller.switchCountry(countryCode);
@@ -210,6 +231,8 @@ $(function () {
             const clickedStory = response.data;
             console.log(clickedStory);
 
+            filterParams.selectedOnModal = clickedStory;
+
             $("#storyDataModal .modal-title").text(clickedStory.emotion.name);
             $("#storyDataModal .modal-description").text(clickedStory.description);
             $("#storyDataModal .modal-story-user").text(clickedStory.user.name);
@@ -218,6 +241,8 @@ $(function () {
 
         }).catch(err => {
             console.log(err)
+
+            filterParams.selectedOnModal = null;
         });
     });
 
@@ -286,7 +311,8 @@ $(function () {
             const data = response.data;
             console.log(data);
 
-            switchCountryAndUpdateStories(data.location.country.code, data.emotion_id);
+            filterParams.baseHistories = [data];   //Only show the created history on globe and its connections
+            switchCountryAndUpdateStories(data.location.country.code, data.emotion_id, data.id);
         }).catch(err => {
             console.log(err)
         });
@@ -294,14 +320,19 @@ $(function () {
         $('#submitStoryModal').modal('hide');
     });
 
+    //Update globe when selecting a history on modal
+    showOnMapButton.on("click", function () {
+        if(filterParams.selectedOnModal == null){
+            alert("Data of history not loaded yet.");
+            return;
+        }
 
+        let h = filterParams.selectedOnModal;
+        filterParams.baseHistories = [h];   //Only show the history on globe and its connections
+        switchCountryAndUpdateStories(h.location.country.code, h.emotion_id, h.id);
 
-
-
-
-
-
-
+        $('#storyDataModal').modal('hide');
+    });
 
 
 
