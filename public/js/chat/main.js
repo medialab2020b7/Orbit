@@ -32,7 +32,7 @@ $(function() {
             receiver_id: selectedChatReceiver.val()
         }
     }).then(response => {
-        console.log("Loaded messages"); console.log(response); console.log(response.data);  //Testing
+        //console.log("Loaded messages"); console.log(response); console.log(response.data);  //Testing
         let chatMessages = response.data;
         chatMessages.forEach(e => addMessage(e));
     }).catch(err => {
@@ -48,10 +48,10 @@ $(function() {
         //Real-time
         Echo.private('chat')
         .listen('MessageSent', (e) => {
-            console.log("Echo loaded"); console.log(e); //Testing
+            //console.log("Echo loaded"); console.log(e); //Testing
 
             if(chatValueUser.val() == e.message.receiver_id && selectedChatReceiver.val() == e.message.user_id){
-                console.log("Echo updated");    //Testing
+                //console.log("Echo updated");    //Testing
                 addMessage({
                     user: { name: e.user.name },
                     message: e.message.message
@@ -70,7 +70,7 @@ $(function() {
                 message,
                 receiver_id
             }).then(response => {
-                console.log("Added message"); console.log(response); console.log(response.data);    //Testing
+                //console.log("Added message"); console.log(response); console.log(response.data);    //Testing
                 addMessage({
                     user: { name: response.data.user.name },
                     message: response.data.message.message

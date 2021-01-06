@@ -21,7 +21,7 @@ $(function() {
             return;
 
         axios.get('/api/cities/' + country).then(response => {
-            console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
+            //console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
             const cities = response.data;
 
             //Add to options
@@ -62,7 +62,7 @@ $(function() {
               'Content-Type': 'multipart/form-data'
             }
         }).then(response => {
-            console.log("Updated profile"); console.log(response); console.log(response.data);    //Testing
+            //console.log("Updated profile"); console.log(response); console.log(response.data);    //Testing
             alert("Profile was updated.");
         }).catch(err => {
             console.log("ERROR Update profile");
