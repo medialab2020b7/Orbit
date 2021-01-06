@@ -341,9 +341,9 @@ $(function () {
 
 
 
-    chatButton.click(function () {
-        window.location.replace("../messages");
-    });
+    // chatButton.click(function () {
+    //     window.location.replace("../messages");
+    // });
 
 
     //Bootstrap code

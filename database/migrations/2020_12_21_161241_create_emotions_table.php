@@ -16,7 +16,7 @@ class CreateEmotionsTable extends Migration
         Schema::create('emotions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->binary('sound')->nullable();
+            $table->text('sound');
             $table->timestamps();
         });
     }
