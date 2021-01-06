@@ -178,7 +178,7 @@
             <div class="col-md-3">
                 <div
                     style="text-align: center; -webkit-text-stroke-color: blue; -webkit-text-stroke-width: 1px; color: transparent">
-                    <h2>STORIES</h2></div>
+                    <h2 id="list-title"></h2></div>
                 <div class="list-group" id="historias">
                     <a href="#"
                        class="story list-group-item list-group-item-action flex-column align-items-start"
