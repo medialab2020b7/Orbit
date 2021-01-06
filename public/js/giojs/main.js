@@ -18,7 +18,10 @@ $(function () {
     };
 
     let selectedCountryCode = "PT";
+    let userToChat = null;
+
     const soundButton = $("#btn-sound");
+    const chatButton = $("#btn-chat");
     const showOnMapButton = $("#btn-onmap");
     const clearFiltersButton = $("#clearFilters");
 
@@ -253,9 +256,10 @@ $(function () {
             $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
             let sound = new Audio('sounds/' + clickedStory.emotion.sound);
             sound.play();
+            userToChat = clickedStory.user.id;
 
         }).catch(err => {
-            console.log(err)
+            console.log(err);
 
             filterParams.selectedOnModal = null;
         });
@@ -324,7 +328,7 @@ $(function () {
             emotion_id
         }).then(response => {
             const data = response.data;
-            //console.log(data);
+            console.log(data);
 
             filterParams.baseHistories = [data];   //Only show the created history on globe and its connections
             switchCountryAndUpdateStories(data.location.country.code, data.emotion_id, data.id);
@@ -379,7 +383,9 @@ $(function () {
     });
 
 
-
+    chatButton.click(function () {
+        window.location.replace('/messages/' + userToChat);
+    });
 
 
 

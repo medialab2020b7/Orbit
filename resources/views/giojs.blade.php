@@ -139,6 +139,11 @@
             width: 60%;
             margin: 0 20%;
         }
+
+        #clearFilters {
+            margin: 10% 25%;
+            width: 50%;
+        }
     </style>
 @endsection
 
@@ -161,7 +166,7 @@
                     </select>
                 </div>
                 <button id="clearFilters" type="button" class="btn btn-primary">
-                        Clear Filters
+                        RESET
                 </button>
             </div>
             <div class="col-md-6">
@@ -286,8 +291,8 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                 </button>
-                                <button type="button" class="btn btn-primary" id="btn-onmap">Show on Map</button>
-                                <button type="button" class="btn btn-primary" id="btn-sound">Sound</button>
+                                <button type="button" class="btn btn-primary" id="btn-onmap">See Connections</button>
+                                <button type="button" class="btn btn-primary" id="btn-chat" value="{{ Auth::user()->id }}">Chat</button>
                             </div>
                         </div>
                     </div>
