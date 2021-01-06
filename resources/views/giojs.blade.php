@@ -5,9 +5,10 @@
         .modal.show .modal-dialog {
             transform: translateY(-60%);
             top: 50%;
-            max-width: calc(100vw / 2);
             background-color: white;
             color: black;
+            max-height: 70vh;
+            overflow-y: scroll;
         }
 
         .modal.show .btn-secondary {
@@ -27,6 +28,7 @@
 
         .modal-title {
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+            font-size: 200%;
         }
 
         .modal.show .btn-secondary:hover {
@@ -132,13 +134,18 @@
             color: white;
             background-color: transparent;
         }
+
+        #submitStoryButton {
+            width: 60%;
+            margin: 0 20%;
+        }
     </style>
 @endsection
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <!--Filter Dropdowns-->
                 <div
                     style="text-align: center; -webkit-text-stroke-color: blue; -webkit-text-stroke-width: 1px; color: transparent">
@@ -154,13 +161,13 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div id="globeArea">
 
                 </div>
             </div>
             <!-- Stories List -->
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div
                     style="text-align: center; -webkit-text-stroke-color: blue; -webkit-text-stroke-width: 1px; color: transparent">
                     <h2>STORIES</h2></div>
@@ -170,9 +177,9 @@
                        data-toggle="modal"
                        data-target="#storyDataModal" data-id="">
                         <div class="d-flex w-100 justify-content-between">
-                            <h2 class="mb-1 story-emotion-name">
+                            <h3 class="mb-1 story-emotion-name">
 
-                            </h2>
+                            </h3>
                             <small class="story-date"></small>
                         </div>
                         <p class="mb-1 story-description"></p>
@@ -182,7 +189,7 @@
             @if(Auth::check())
                 <!-- Button trigger modal -->
                     <button id="submitStoryButton" type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#submitStoryModal" style="width: 100%">
+                            data-target="#submitStoryModal">
                         TELL MY STORY
                     </button>
                 @endif

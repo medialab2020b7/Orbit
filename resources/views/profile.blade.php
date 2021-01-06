@@ -9,9 +9,10 @@
         .modal.show .modal-dialog {
             transform: translateY(-60%);
             top: 50%;
-            max-width: calc(100vw / 2);
             background-color: white;
             color: black;
+            max-height: 70vh;
+            overflow-y: scroll;
         }
 
         .modal.show .btn-primary {
@@ -39,6 +40,7 @@
 
         .modal-title {
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+            font-size: 200%;
         }
 
         .modal.show .btn-secondary:hover {

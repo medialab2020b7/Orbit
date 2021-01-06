@@ -32,22 +32,22 @@
 
         @media (min-width: 576px) {
             .container {
-                max-width: 80vw;
+                max-width: 90vw;
             }
         }
         @media (min-width: 768px) {
             .container {
-                max-width: 80vw;
+                max-width: 90vw;
             }
         }
         @media (min-width: 992px) {
             .container {
-                max-width: 80vw;
+                max-width: 90vw;
             }
         }
         @media (min-width: 1200px) {
             .container {
-                max-width: 80vw;
+                max-width: 90vw;
             }
         }
         body {
@@ -57,9 +57,18 @@
         }
         h1 {
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+            font-size: 200%;
         }
         h2 {
-            font-size: 1.2rem;
+            font-size: 150%;
+            font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: red;
+            color: transparent;
+            font-weight: normal;
+        }
+        h3 {
+            font-size: 150%;
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
         }
         .display-3 {
@@ -204,6 +213,7 @@
         }
         .font-weight-bold {
             font-family: "Monument Extended", "Helvetica LT Ext", sans-serif;
+            font-weight: normal !important;
         }
 
         .btn-primary {
