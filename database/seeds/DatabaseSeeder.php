@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $e2 = DB::table('emotions')->insertGetId([
             'name' => "Annoying",
-            'sound' => "default.wav"
+            'sound' => "Annoying.wav"
         ]);
         $e3 = DB::table('emotions')->insertGetId([
             'name' => "Anxious and Tense",

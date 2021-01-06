@@ -100,7 +100,7 @@ $(function () {
         //console.log(filterParams); console.log(params);
 
         axios.get(`/api/histories?${params}`).then(response => {
-            console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
+            //console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
             filterParams.histories = histories;
             let filteredStories = [];
@@ -238,12 +238,12 @@ $(function () {
 
     // Get Selected Story
     storiesList.on('click', 'a.story', function () {
-        console.log("Clicked on a Story");
+        //console.log("Clicked on a Story");
         let clickedStoryId = $(this).attr('data-id');
 
         axios.get('/api/historiesById/' + clickedStoryId).then(response => {
             const clickedStory = response.data;
-            console.log(clickedStory);
+            //console.log(clickedStory);
 
             filterParams.selectedOnModal = clickedStory;
 
@@ -272,7 +272,7 @@ $(function () {
             return;
 
         axios.get('/api/cities/' + country).then(response => {
-            console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
+            //console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
             const cities = response.data;
 
             //Add to options
@@ -324,7 +324,7 @@ $(function () {
             emotion_id
         }).then(response => {
             const data = response.data;
-            console.log(data);
+            //console.log(data);
 
             filterParams.baseHistories = [data];   //Only show the created history on globe and its connections
             switchCountryAndUpdateStories(data.location.country.code, data.emotion_id, data.id);

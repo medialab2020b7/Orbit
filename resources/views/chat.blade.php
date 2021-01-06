@@ -77,7 +77,7 @@
         <div class="col-md-6 col-md-offset-2" style="margin: auto">
             <div class="panel panel-default">
                 <div class="panel-heading">Chat with</div>
-
+                
                 <div class="panel-body">
                   <div class="form-group">
                     <select class="form-control" id="selectUser">
@@ -99,6 +99,7 @@
                   <div class="input-group" id="chat-form">
                       <input id="btn-input" type="text" name="message" class="form-control input-sm" placeholder="Type your message here...">
                       <input id="user-input" type="hidden" name="user" value="{{ Auth::user()->id }}">
+                      <input id="user-selected" type="hidden" name="user" value="{{ $selectedUser }}">
 
                       <span class="input-group-btn">
                           <button class="btn btn-primary btn-sm" id="btn-chat">
