@@ -168,7 +168,7 @@
                 </div>
                 <div class="input-group">
                     <select name="emotion_id" class="custom-select" id="emotion_id">
-                        <option value="default" selected>All Emotions</option>
+                        <option value="" selected>All Emotions</option>
                         @foreach($emotions as $e)
                             <option value="{{$e->id}}">{{$e->name}}</option>
                     @endforeach
