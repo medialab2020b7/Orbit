@@ -210,7 +210,7 @@
                                               rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <select required name="emotion_id" class="form-control" id="emotion_id">
+                                    <select required name="emotion_id_form" class="form-control" id="emotion_id_form">
                                         <option selected>Choose Emotion</option>
                                         @foreach($emotions as $e)
                                             <option value="{{$e->id}}">{{$e->name}}</option>
@@ -222,26 +222,21 @@
                                         <label for="inputState">
                                             <input required name="history_date" id="history_date"
                                                    class="form-control"
-                                                   type="text"
-                                                   placeholder="Date">
+                                                   type="date">
                                         </label>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputState">
-                                                <input required name="country" id="country" class="form-control"
-                                                       type="text"
-                                                       placeholder="Country">
-                                            </label>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputState">
-                                                <input required name="city" id="city" class="form-control"
-                                                       type="text"
-                                                       placeholder="City">
-                                            </label>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <select required name="country" class="form-control" id="country">
+                                        <option selected>Choose Country</option>
+                                        @foreach($countries as $c)
+                                            <option value="{{$c->code}}">{{$c->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select disabled required name="city" class="form-control" id="city">
+                                           </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close

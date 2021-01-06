@@ -1,4 +1,6 @@
 $(function () {
+    const token = $("#token").val();
+
     const container = document.getElementById("globeArea");
     // const citySelect = $("#city_id");
     const emotionSelect = $("#emotion_id");
@@ -14,6 +16,12 @@ $(function () {
 
     let selectedCountryCode = "PT";
     let chatButton = $("#btn-chat");
+
+    const botaoClicar = $("#btn-story");
+
+    const countrySelect = $("#country");
+    const citySelect = $("#city");
+    let selectedCity = "";
 
     /* Start Globe */
     let controller = null;
@@ -87,7 +95,7 @@ $(function () {
         //console.log(filterParams); console.log(params);
 
         axios.get(`/api/histories?${params}`).then(response => {
-            //console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
+            console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
             let filteredStories = [];
             histories.forEach(h => {
@@ -147,9 +155,20 @@ $(function () {
     });
 
     // USE THIS FUNCTION AFTER CREATING A STORY, SEND IN THE COUNTRY CODE OF THE STORY ------------- PODES USAR ISTO
-    function switchCountryAndUpdateStories(countryCode) {
-        controller.switchCountry(countryCode);
+    function switchCountryAndUpdateStories(countryCode, emotionId) {
+        // controller.switchCountry(countryCode);
+        // selectedCountryCode = countryCode;
+        // fetchHistories();
+
+        //Sync globe
         selectedCountryCode = countryCode;
+        controller.switchCountry(countryCode);
+
+        //Update filter of emotion
+        filterParams.emotion = emotionId;
+        emotionSelect.val(emotionId);
+        
+        //Reload histories        
         fetchHistories();
     }
 
@@ -163,10 +182,6 @@ $(function () {
     // formSubmit.on( "click", function() {
     //     fetchHistories();
     // });
-
-    //Bootstrap code
-    fetchHistories();
-    // fetchCities(initialCountry);
 
     // Histories
     const createStoryListElement = data => {
@@ -206,11 +221,103 @@ $(function () {
         });
     });
 
+    /** CREATE HISTORY */
+    countrySelect.on("change", function() {
+        const country = $( "#country option:selected" ).val();
+
+        citySelect.empty();
+        citySelect.prop("disabled", true);
+        
+        if(country === "")
+            return;
+
+        axios.get('/api/cities/' + country).then(response => {
+            console.log("Loaded cities"); console.log(response); console.log(response.data);    //Testing
+            const cities = response.data;
+
+            //Add to options
+            citySelect.prop("disabled", false);
+            if(cities.length > 0)
+                selectedCity = cities[0].id;
+            cities.forEach(c => {
+                citySelect.append(`<option value="${c.id}">${c.name}</option>`);
+            });
+            
+
+        }).catch(err => {
+            console.log("ERROR Loaded cities");
+            console.log(err);
+            if (err.response) console.log(err.response);
+            else if (err.request) console.log(err.request);
+        });
+    });
+
+    citySelect.on("change", function() {    //jquery getting selected not working
+        selectedCity = this.value;
+    });
+
+    botaoClicar.on("click", function () {
+        const description = $("#description").val();
+        // const user_id = $("#user_id").val();
+        const history_date = $("#history_date").val();
+        // const country = $("#country").val();
+        const city = selectedCity;
+        // const active = $("#active").val();
+        const emotion_id = $("#emotion_id_form option:selected").val();
+
+        if(!description || !history_date || !city || !emotion_id){
+            alert("Please fill all fields.");
+            return;
+        }
+
+        /*const historias = $("#historias");
+        const historiaUm = historias.first();*/
+
+        axios.post("/api/histories", {
+            api_token: token,
+            // user_id,
+            description,
+            history_date,
+            // country,
+            city,
+            // active,
+            emotion_id
+        }).then(response => {
+            const data = response.data;
+            console.log(data);
+
+            switchCountryAndUpdateStories(data.location.country.code, data.emotion_id);
+        }).catch(err => {
+            console.log(err)
+        });
+
+        $('#submitStoryModal').modal('hide');
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     chatButton.click(function () {
         window.location.replace("../messages");
     });
 
+
+    //Bootstrap code
+    fetchHistories();
+    // fetchCities(initialCountry);
 });
 
 

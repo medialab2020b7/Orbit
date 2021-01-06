@@ -27,9 +27,9 @@
                             @endif
                             @foreach($countries as $c)
                                 @if($country_id == $c->id)
-                                    <option value="{{$c->id}}" selected>{{$c->name}}</option>
+                                    <option value="{{$c->code}}" selected>{{$c->name}}</option>
                                 @else
-                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                    <option value="{{$c->code}}">{{$c->name}}</option>
                                 @endif
                             @endforeach
                         </select>

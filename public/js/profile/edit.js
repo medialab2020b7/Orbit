@@ -9,6 +9,8 @@ $(function() {
     const formAvatar = document.getElementById("form-avatar");;
     const formSend = $("#form-submit");
 
+    let selectedCity = "";
+
     countrySelect.on("change", function() {
         const country = $( "#form-country_id option:selected" ).val();
 
@@ -24,8 +26,9 @@ $(function() {
 
             //Add to options
             citySelect.prop("disabled", false);
+            citySelect.append('<option selected="selected" value="">Choose City</option>');
             cities.forEach(c => {
-                citySelect.append($('<option>').val(c.code).text(c.name));
+                citySelect.append(`<option value="${c.id}">${c.name}</option>`);
             });
             
 
@@ -37,16 +40,19 @@ $(function() {
         });
     });
 
+    citySelect.on("change", function() {    //jquery getting selected not working
+        selectedCity = this.value;
+    });
+
     formSend.on( "click", function() {
         let name = formName.val();
         let description = formDescription.val();
-        let city_id = $( "#form-city_id option:selected" ).val();
 
         let formData = new FormData();
         formData.append("api_token", token);
         formData.append("name", name);
         formData.append("description", description);
-        formData.append("city_id", city_id);
+        formData.append("city_id", selectedCity);
 
         if(formAvatar.files && formAvatar.files.length > 0)
             formData.append("avatar", formAvatar.files[0]);
@@ -57,6 +63,7 @@ $(function() {
             }
         }).then(response => {
             console.log("Updated profile"); console.log(response); console.log(response.data);    //Testing
+            alert("Profile was updated.");
         }).catch(err => {
             console.log("ERROR Update profile");
             console.log(err);

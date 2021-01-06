@@ -66,21 +66,27 @@ class APIController extends Controller
     {
         $user = Auth::user();
 
-        //1 Get params from request
+        $emotion = $request->input('emotion_id');
 
-        //2 Get all histories from desired Emotion
-        //Select one or more of that (try to select from other users only)
+        $h = $user->histories()->create([
+            'description' => $request->input('description'),
+            'history_date' => $request->input('history_date'),
+            'city_id' => $request->input('city'),
+            'emotion_id' => $emotion,
+            'active' => true
+          ]);
 
-        //3 Create history and persist to database
-        $history = $user->histories()->create([
-            //put other params
-        ]);
+        $histories_to_connect = \App\History::whereHas('emotion', function ($query) use($emotion, $user) {
+            return $query->where('id', '=', $emotion)->where('user_id', '!=', $user->id);
+        })->inRandomOrder()->limit(3)->get();
 
-        //4 Create connection with selected histories (from 2)
+        $h->histories()->saveMany($histories_to_connect);
 
-        //Return created history
+        $h->refresh();
 
-        return $history;
+        $h->load('histories');
+
+        return $h;
     }
 
     /**
