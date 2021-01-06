@@ -31,6 +31,9 @@ $(function () {
     const citySelect = $("#city");
     let selectedCity = "";
 
+    const listTitle = $("#list-title");
+    listTitle.text("STORIES");
+
     /* Start Globe */
     let controller = null;
 
@@ -78,9 +81,10 @@ $(function () {
             connections.forEach(c => {
                 let i = c.location.country.code;
                 data.push({e, i, v: 100});
+                console.log(c);
             });
-        });
 
+        });
         controller.addData(data);
     };
 
@@ -182,8 +186,10 @@ $(function () {
 
         filterParams.baseHistories = newHistories;
 
-        if(hasBase && filterParams.baseHistories.length == 0)
+        if(hasBase && filterParams.baseHistories.length == 0) {
             alert("There is no connected history to current history. Showing all histories on that location.");
+            listTitle.text("STORIES");
+        }
 
         fetchHistories();
     });
@@ -337,6 +343,7 @@ $(function () {
         });
 
         $('#submitStoryModal').modal('hide');
+        listTitle.text("CONNECTIONS");
     });
 
     //Update globe when selecting a history on modal
@@ -351,6 +358,7 @@ $(function () {
         switchCountryAndUpdateStories(h.location.country.code, h.emotion_id, h.id);
 
         $('#storyDataModal').modal('hide');
+        listTitle.text("CONNECTIONS");
     });
 
     //Play sound
@@ -380,6 +388,7 @@ $(function () {
         selectedCity = "";
 
         fetchHistories();
+        listTitle.text("STORIES");
     });
 
 
