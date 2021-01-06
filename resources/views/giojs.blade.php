@@ -292,7 +292,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                 </button>
                                 <button type="button" class="btn btn-primary" id="btn-onmap">See Connections</button>
-                                <button type="button" class="btn btn-primary" id="btn-chat" value="{{ Auth::user()->id }}">Chat</button>
+                                <button type="button" class="btn btn-primary" id="btn-chat">Chat</button>
                             </div>
                         </div>
                     </div>

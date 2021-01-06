@@ -81,9 +81,10 @@ $(function () {
             connections.forEach(c => {
                 let i = c.location.country.code;
                 data.push({e, i, v: 100});
+                console.log(c);
             });
-        });
 
+        });
         controller.addData(data);
     };
 
