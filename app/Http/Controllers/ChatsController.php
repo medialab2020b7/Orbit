@@ -37,6 +37,6 @@ class ChatsController extends Controller
         });
       });
 
-      return view('chat')->with('users', $users);
+      return view('chat')->with('users', $users->unique());
     }
 }
