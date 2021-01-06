@@ -17,7 +17,7 @@ class ChatsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
       $user = \Auth::user();
 
@@ -37,6 +37,11 @@ class ChatsController extends Controller
         });
       });
 
-      return view('chat')->with('users', $users->unique());
+      $selectedUser = null;
+
+      if(!is_null($request->user))
+        $selectedUser = $request->user;
+
+      return view('chat')->with('users', $users->unique())->with('selectedUser', $selectedUser);
     }
 }

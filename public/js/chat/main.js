@@ -8,6 +8,7 @@ $(function() {
     const chatValueMessage = $("#btn-input");
     const chatValueUser = $("#user-input");
     const chatReceiver = $("#selectUser");
+    const chatSelectedUser = $("#user-selected");
     let selectedChatReceiver = chatReceiver.find(":selected");
 
     const addMessage = e => {
@@ -92,4 +93,18 @@ $(function() {
 
         if(val !== "") loadChatMessages();
     });
+
+    if(!!chatSelectedUser.val()){
+        const val = chatSelectedUser.val();
+
+        $("#selectUser option").each(function(i){
+            let val2 = $(this).val();
+
+            if(val == val2){
+                $(`#selectUser option[value="${val}"]`).attr('selected', 'selected');
+                selectedChatReceiver = chatReceiver.find(":selected");
+                loadChatMessages();
+            }
+        });
+    }
 });
