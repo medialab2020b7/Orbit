@@ -81,7 +81,6 @@ $(function () {
             connections.forEach(c => {
                 let i = c.location.country.code;
                 data.push({e, i, v: 100});
-                console.log(c);
             });
 
         });
@@ -127,7 +126,30 @@ $(function () {
 
             updateGlobe(filteredStories);
             storiesList.empty();
-            filteredStories.forEach(e => createStoryListElement(e));
+            for(let i = 0; i < filteredStories.length; i++) {
+                if(bhs.length > 0) {
+                    for(let j = 0; j < bhs.length; j++) {
+                        if(filteredStories[i].id === bhs[j].id) {
+                            createStoryListElement(filteredStories[i], true);
+                        } else {
+                            createStoryListElement(filteredStories[i], false);
+                        }
+                    }
+                } else {
+                    createStoryListElement(filteredStories[i], false);
+                }
+            }
+            for(let i = 0; i < bhs.length; i++) {
+                for(let j = 0; j < histories.length; j++) {
+                    for(let z = 0; z < bhs[i].histories.length; z++) {
+                        if(histories[j].id === bhs[i].histories[z].id) {
+                            console.log(histories[j]);
+                            createStoryListElement(histories[j], false);
+                        }
+                    }
+                }
+            }
+            //console.log(histories);
 
         }).catch(err => {
             console.log("ERROR loaded histories");  //Testing
@@ -228,7 +250,7 @@ $(function () {
     // });
 
     // Histories
-    const createStoryListElement = data => {
+    function createStoryListElement(data, isSelected) {
         const newElemet = listElementTemplate.clone();
         if (!newElemet.hasClass("story")) {
             newElemet.addClass("story");
@@ -238,12 +260,15 @@ $(function () {
         const storyDescription = newElemet.find(".story-description");
         const storyDate = newElemet.find(".story-date");
         const storyUser = newElemet.find(".story-user");
+        if(isSelected) {
+            newElemet.find('.isSelected').css('opacity', 1);
+        }
         storyEmotionName.text(data.emotion.name);
         storyDescription.text(data.description);
         storyDate.text(data.history_date);
         storyUser.text(data.user.name);
         storiesList.append(newElemet);
-    };
+    }
 
     // Get Selected Story
     storiesList.on('click', 'a.story', function () {
@@ -389,6 +414,7 @@ $(function () {
 
         fetchHistories();
         listTitle.text("STORIES");
+        emotionSelect.val('default');
     });
 
 
