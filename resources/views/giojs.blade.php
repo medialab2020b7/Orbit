@@ -284,7 +284,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                 </button>
                                 <button type="button" class="btn btn-primary" id="btn-onmap">Show on Map</button>
-                                <button type="button" class="btn btn-primary" id="btn-chat">Chat</button>
+                                <button type="button" class="btn btn-primary" id="btn-sound">Sound</button>
                             </div>
                         </div>
                     </div>
@@ -296,6 +296,7 @@
 
 @section('body')
     <!-- Gio.js -->
+    <script>const soundsFolder = "{{asset('sounds')}}";</script>
     <script src="{{ asset('js/giojs/three.min.js')}}"></script>
     <script src="{{ asset('js/giojs/gio.min.js')}}"></script>
     <!-- <script src="{{ asset('js/giojs/sample-data.js')}}"></script> -->

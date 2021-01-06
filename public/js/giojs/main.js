@@ -17,7 +17,7 @@ $(function () {
     };
 
     let selectedCountryCode = "PT";
-    const chatButton = $("#btn-chat");
+    const soundButton = $("#btn-sound");
     const showOnMapButton = $("#btn-onmap");
 
     const botaoClicar = $("#btn-story");
@@ -334,16 +334,24 @@ $(function () {
         $('#storyDataModal').modal('hide');
     });
 
+    //Play sound
+    soundButton.on("click", function () {
+        if(filterParams.selectedOnModal == null){
+            alert("Data of history not loaded yet.");
+            return;
+        }
+
+        let h = filterParams.selectedOnModal;
+        let sound = h.emotion.sound;
+        let file = soundsFolder + "/" + sound;
+
+        let audio = new Audio(file);
+        audio.play();
+    });
 
 
 
 
-
-
-
-    // chatButton.click(function () {
-    //     window.location.replace("../messages");
-    // });
 
 
     //Bootstrap code
