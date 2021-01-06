@@ -251,7 +251,7 @@ $(function () {
             $("#storyDataModal .modal-description").text(clickedStory.description);
             $("#storyDataModal .modal-story-user").text(clickedStory.user.name);
             $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
-            let sound = new Audio('sounds/' + clickedStory.emotion.name + '.wav');
+            let sound = new Audio('sounds/' + clickedStory.emotion.sound);
             sound.play();
 
         }).catch(err => {

@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
 
         $e1 = DB::table('emotions')->insertGetId([
             'name' => "Amusing",
-            'sound' => "amusing.wav"
+            'sound' => "Amusing.wav"
         ]);
         $e2 = DB::table('emotions')->insertGetId([
             'name' => "Annoying",
@@ -111,47 +111,47 @@ class DatabaseSeeder extends Seeder
         ]);
         $e3 = DB::table('emotions')->insertGetId([
             'name' => "Anxious and Tense",
-            'sound' => "anxious.wav"
+            'sound' => "Anxious.wav"
         ]);
         $e4 = DB::table('emotions')->insertGetId([
             'name' => "Beautiful",
-            'sound' => "beautiful.wav"
+            'sound' => "Beautiful.wav"
         ]);
         $e5 = DB::table('emotions')->insertGetId([
             'name' => "Calm, Relaxing and Serene",
-            'sound' => "calm.wav"
+            'sound' => "Calm.wav"
         ]);
         $e6 = DB::table('emotions')->insertGetId([
             'name' => "Dreamy",
-            'sound' => "dreamy.wav"
+            'sound' => "Dreamy.wav"
         ]);
         $e7 = DB::table('emotions')->insertGetId([
             'name' => "Energizing and Pump-up",
-            'sound' => "energizing.wav"
+            'sound' => "Energizing.wav"
         ]);
         $e8 = DB::table('emotions')->insertGetId([
             'name' => "Erotic and Desirous",
-            'sound' => "erotic.wav"
+            'sound' => "Erotic.wav"
         ]);
         $e9 = DB::table('emotions')->insertGetId([
             'name' => "Indignant and Defiant",
-            'sound' => "indignant.wav"
+            'sound' => "Indignant.wav"
         ]);
         $e10 = DB::table('emotions')->insertGetId([
             'name' => "Joyful and Cheerful",
-            'sound' => "joyful.wav"
+            'sound' => "Joyful.wav"
         ]);
         $e11 = DB::table('emotions')->insertGetId([
             'name' => "Sad and Depressing",
-            'sound' => "sad.wav"
+            'sound' => "Sad.wav"
         ]);
         $e12 = DB::table('emotions')->insertGetId([
             'name' => "Scary and Fearful",
-            'sound' => "scary.wav"
+            'sound' => "Scary.wav"
         ]);
         $e13 = DB::table('emotions')->insertGetId([
             'name' => "Triumphant and Heroic",
-            'sound' => "triumphant.wav"
+            'sound' => "Triumphant.wav"
         ]);
 
         $h1 = DB::table('histories')->insertGetId([
