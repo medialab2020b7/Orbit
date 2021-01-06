@@ -202,8 +202,8 @@ $(function () {
         //Update filter of emotion
         filterParams.emotion = emotionId;
         emotionSelect.val(emotionId);
-        
-        //Reload histories        
+
+        //Reload histories
         fetchHistories();
     }
 
@@ -251,7 +251,8 @@ $(function () {
             $("#storyDataModal .modal-description").text(clickedStory.description);
             $("#storyDataModal .modal-story-user").text(clickedStory.user.name);
             $("#storyDataModal .modal-story-date").text(clickedStory.history_date);
-            $("#storyDataModal .modal-story-sound").text("add sound here");
+            let sound = new Audio('sounds/' + clickedStory.emotion.name + '.wav');
+            sound.play();
 
         }).catch(err => {
             console.log(err)
@@ -266,7 +267,7 @@ $(function () {
 
         citySelect.empty();
         citySelect.prop("disabled", true);
-        
+
         if(country === "")
             return;
 
@@ -281,7 +282,7 @@ $(function () {
             cities.forEach(c => {
                 citySelect.append(`<option value="${c.id}">${c.name}</option>`);
             });
-            
+
 
         }).catch(err => {
             console.log("ERROR Loaded cities");
