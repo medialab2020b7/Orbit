@@ -144,6 +144,16 @@
             margin: 10% 25%;
             width: 50%;
         }
+
+        .isSelected {
+            color: blue;
+            opacity: 0;
+        }
+
+        .list-elem-bottom {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 @endsection
 
@@ -191,7 +201,10 @@
                             <small class="story-date"></small>
                         </div>
                         <p class="mb-1 story-description"></p>
-                        <small class="story-user"></small>
+                        <div class="list-elem-bottom">
+                            <small class="story-user"></small>
+                            <small class="isSelected">FOCUS</small>
+                        </div>
                     </a>
                 </div>
             @if(Auth::check())
