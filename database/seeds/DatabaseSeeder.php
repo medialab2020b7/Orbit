@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         $italy = DB::table('countries')->where('name', "Italy")->first();
         $italy_state = DB::table('states')->where('country_id',  $italy->id)->first();
         $italy_city = DB::table('cities')->where('state_id',  $italy_state->id)->first();
-        
+
         $u1 = DB::table('users')->insertGetId([
             'name' => "Teste 1",
             'email' => "a@a.com",
@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
 
         $e1 = DB::table('emotions')->insertGetId([
             'name' => "Amusing",
-            'sound' => "Amusing.wav"
+            'sound' => "amusing.wav"
         ]);
         $e2 = DB::table('emotions')->insertGetId([
             'name' => "Annoying",
@@ -111,47 +111,47 @@ class DatabaseSeeder extends Seeder
         ]);
         $e3 = DB::table('emotions')->insertGetId([
             'name' => "Anxious and Tense",
-            'sound' => "Anxious.wav"
+            'sound' => "anxious.wav"
         ]);
         $e4 = DB::table('emotions')->insertGetId([
             'name' => "Beautiful",
-            'sound' => "Beautiful.wav"
+            'sound' => "beautiful.wav"
         ]);
         $e5 = DB::table('emotions')->insertGetId([
             'name' => "Calm, Relaxing and Serene",
-            'sound' => "Calm.wav"
+            'sound' => "calm.wav"
         ]);
         $e6 = DB::table('emotions')->insertGetId([
             'name' => "Dreamy",
-            'sound' => "Dreamy.wav"
+            'sound' => "dreamy.wav"
         ]);
         $e7 = DB::table('emotions')->insertGetId([
             'name' => "Energizing and Pump-up",
-            'sound' => "Energizing.wav"
+            'sound' => "energizing.wav"
         ]);
         $e8 = DB::table('emotions')->insertGetId([
             'name' => "Erotic and Desirous",
-            'sound' => "Erotic.wav"
+            'sound' => "erotic.wav"
         ]);
         $e9 = DB::table('emotions')->insertGetId([
             'name' => "Indignant and Defiant",
-            'sound' => "Indignant.wav"
+            'sound' => "indignant.wav"
         ]);
         $e10 = DB::table('emotions')->insertGetId([
             'name' => "Joyful and Cheerful",
-            'sound' => "Joyful.wav"
+            'sound' => "joyful.wav"
         ]);
         $e11 = DB::table('emotions')->insertGetId([
             'name' => "Sad and Depressing",
-            'sound' => "Sad.wav"
+            'sound' => "sad.wav"
         ]);
         $e12 = DB::table('emotions')->insertGetId([
             'name' => "Scary and Fearful",
-            'sound' => "Scary.wav"
+            'sound' => "scary.wav"
         ]);
         $e13 = DB::table('emotions')->insertGetId([
             'name' => "Triumphant and Heroic",
-            'sound' => "Triumphant.wav"
+            'sound' => "triumphant.wav"
         ]);
 
         $h1 = DB::table('histories')->insertGetId([
@@ -210,7 +210,7 @@ class DatabaseSeeder extends Seeder
             'active' => true,
             'emotion_id' => $e1,
         ]);
-     
+
 
         DB::table('history_history')->insert([
             'history_one' => $h1,
