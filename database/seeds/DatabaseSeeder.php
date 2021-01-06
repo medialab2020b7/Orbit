@@ -88,29 +88,62 @@ class DatabaseSeeder extends Seeder
         DB::table('messages')->insert([
             'user_id' => $u1,
             'receiver_id' => $u2,
-            'message' => "Teste inicial",
+            'message' => "Hello Teste 2",
         ]);
         DB::table('messages')->insert([
             'user_id' => $u1,
             'receiver_id' => $u3,
-            'message' => "Teste inicial 2",
+            'message' => "Hello Teste 3",
         ]);
         DB::table('messages')->insert([
             'user_id' => $u2,
             'receiver_id' => $u1,
-            'message' => "Teste inicial 3",
+            'message' => "Hello Teste 1",
         ]);
 
         $e1 = DB::table('emotions')->insertGetId([
-            'name' => "Happy"
+            'name' => "Amusing"
         ]);
         $e2 = DB::table('emotions')->insertGetId([
-            'name' => "Sad"
+            'name' => "Annoying"
+        ]);
+        $e3 = DB::table('emotions')->insertGetId([
+            'name' => "Anxious and Tense"
+        ]);
+        $e4 = DB::table('emotions')->insertGetId([
+            'name' => "Beautiful"
+        ]);
+        $e5 = DB::table('emotions')->insertGetId([
+            'name' => "Calm, Relaxing and Serene"
+        ]);
+        $e6 = DB::table('emotions')->insertGetId([
+            'name' => "Dreamy"
+        ]);
+        $e7 = DB::table('emotions')->insertGetId([
+            'name' => "Energizing and Pump-up"
+        ]);
+        $e8 = DB::table('emotions')->insertGetId([
+            'name' => "Erotic and Desirous"
+        ]);
+        $e9 = DB::table('emotions')->insertGetId([
+            'name' => "Indignant and Defiant"
+        ]);
+        $e10 = DB::table('emotions')->insertGetId([
+            'name' => "Joyful and Cheerful"
+        ]);
+        $e11 = DB::table('emotions')->insertGetId([
+            'name' => "Sad and Depressing"
+        ]);
+        $e12 = DB::table('emotions')->insertGetId([
+            'name' => "Scary and Fearful"
+        ]);
+        $e13 = DB::table('emotions')->insertGetId([
+            'name' => "Triumphant and Heroic"
         ]);
 
         $h1 = DB::table('histories')->insertGetId([
             'user_id' => $u1,
-            'description' => "Essa é a minha história.",
+            'description' => "This is an amusing history (1) on Portugal from user (1)",
             'history_date' => Carbon::now(),
             'city_id' => $city->id,
             'active' => true,
@@ -118,7 +151,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h2 =  DB::table('histories')->insertGetId([
             'user_id' => $u1,
-            'description' => "Essa é a minha história 2.",
+            'description' => "This is an annoying history (2) on Portugal from user (1)",
             'history_date' => Carbon::now(),
             'city_id' => $city->id,
             'active' => true,
@@ -126,7 +159,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h3 = DB::table('histories')->insertGetId([
             'user_id' => $u2,
-            'description' => "Essa é a minha história 3.",
+            'description' => "This is an amusing history (3) on Brazil from user (2)",
             'history_date' => Carbon::now(),
             'city_id' => $brasil_city->id,
             'active' => true,
@@ -134,7 +167,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h4 = DB::table('histories')->insertGetId([
             'user_id' => $u3,
-            'description' => "Essa é a minha história 4.",
+            'description' => "This is an amusing history (4) on Germany from user (3)",
             'history_date' => Carbon::now(),
             'city_id' => $germany_city->id,
             'active' => true,
@@ -142,7 +175,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h5 = DB::table('histories')->insertGetId([
             'user_id' => $u4,
-            'description' => "Essa é a minha história 5.",
+            'description' => "This is an amusing history (5) on Spain from user (4)",
             'history_date' => Carbon::now(),
             'city_id' => $spain_city->id,
             'active' => true,
@@ -150,7 +183,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h6 = DB::table('histories')->insertGetId([
             'user_id' => $u5,
-            'description' => "Essa é a minha história 6.",
+            'description' => "This is an amusing history (6) on Spain from user (5)",
             'history_date' => Carbon::now(),
             'city_id' => $spain_city->id,
             'active' => true,
@@ -158,7 +191,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h7 = DB::table('histories')->insertGetId([
             'user_id' => $u3,
-            'description' => "Essa é a minha história 7.",
+            'description' => "This is an annoying history (7) on Portugal from user (3)",
             'history_date' => Carbon::now(),
             'city_id' => $city->id,
             'active' => true,
@@ -166,7 +199,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h8 = DB::table('histories')->insertGetId([
             'user_id' => $u1,
-            'description' => "Essa é a minha história.",
+            'description' => "This is an annoying history (8) on Portugal from user (1)",
             'history_date' => Carbon::now(),
             'city_id' => $city->id,
             'active' => true,
@@ -174,7 +207,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $h9 = DB::table('histories')->insertGetId([
             'user_id' => $u6,
-            'description' => "Essa é a minha história.",
+            'description' => "This is an annoying history (9) on Italy from user (6)",
             'history_date' => Carbon::now(),
             'city_id' => $italy_city->id,
             'active' => true,
@@ -197,6 +230,15 @@ class DatabaseSeeder extends Seeder
         DB::table('history_history')->insert([
             'history_one' => $h4,
             'history_two' => $h1
+        ]);
+
+        DB::table('history_history')->insert([
+            'history_one' => $h3,
+            'history_two' => $h4
+        ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h4,
+            'history_two' => $h3
         ]);
 
         DB::table('history_history')->insert([
