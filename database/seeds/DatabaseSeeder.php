@@ -26,9 +26,9 @@ class DatabaseSeeder extends Seeder
         $brasil = DB::table('countries')->where('name', "Brazil")->first();
         $brasil_state = DB::table('states')->where('country_id',  $brasil->id)->first();
         $brasil_city = DB::table('cities')->where('state_id',  $brasil_state->id)->first();
-        $germany = DB::table('countries')->where('name', "Bolivia")->first();
-        $germany_state = DB::table('states')->where('country_id',  $germany->id)->first();
-        $germany_city = DB::table('cities')->where('state_id',  $germany_state->id)->first();
+        $bolivia = DB::table('countries')->where('name', "Bolivia")->first();
+        $bolivia_state = DB::table('states')->where('country_id',  $bolivia->id)->first();
+        $bolivia_city = DB::table('cities')->where('state_id',  $bolivia_state->id)->first();
         $spain = DB::table('countries')->where('name', "Spain")->first();
         $spain_state = DB::table('states')->where('country_id',  $spain->id)->first();
         $spain_city = DB::table('cities')->where('state_id',  $spain_state->id)->first();
@@ -172,77 +172,62 @@ class DatabaseSeeder extends Seeder
         ]);
         $h3 = DB::table('histories')->insertGetId([
             'user_id' => $u2,
-            'description' => "This is an amusing history (3) on Brazil from user (2)",
+            'description' => "This is an annoying history (3) on Brazil from user (2)",
             'history_date' => Carbon::now(),
             'city_id' => $brasil_city->id,
             'active' => true,
-            'emotion_id' => $e1,
+            'emotion_id' => $e2,
         ]);
         $h4 = DB::table('histories')->insertGetId([
             'user_id' => $u3,
-            'description' => "This is an amusing history (4) on Germany from user (3)",
+            'description' => "This is an annoying history (4) on Bolivia from user (3)",
             'history_date' => Carbon::now(),
-            'city_id' => $germany_city->id,
+            'city_id' => $bolivia_city->id,
             'active' => true,
-            'emotion_id' => $e1,
+            'emotion_id' => $e2,
         ]);
         $h5 = DB::table('histories')->insertGetId([
             'user_id' => $u4,
-            'description' => "This is an amusing history (5) on Spain from user (4)",
+            'description' => "This is an annoying history (5) on Spain from user (4)",
             'history_date' => Carbon::now(),
             'city_id' => $spain_city->id,
             'active' => true,
-            'emotion_id' => $e1,
+            'emotion_id' => $e2,
         ]);
         $h6 = DB::table('histories')->insertGetId([
             'user_id' => $u5,
-            'description' => "This is an amusing history (6) on Spain from user (5)",
+            'description' => "This is an annoying history (6) on Portugal from user (5)",
+            'history_date' => Carbon::now(),
+            'city_id' => $city->id,
+            'active' => true,
+            'emotion_id' => $e2,
+        ]);
+        $h7 = DB::table('histories')->insertGetId([
+            'user_id' => $u2,
+            'description' => "This is an amusing history (7) on Spain from user (2)",
             'history_date' => Carbon::now(),
             'city_id' => $spain_city->id,
             'active' => true,
             'emotion_id' => $e1,
         ]);
-        $h7 = DB::table('histories')->insertGetId([
-            'user_id' => $u3,
-            'description' => "This is an annoying history (7) on Portugal from user (3)",
-            'history_date' => Carbon::now(),
-            'city_id' => $city->id,
-            'active' => true,
-            'emotion_id' => $e2,
-        ]);
-        $h8 = DB::table('histories')->insertGetId([
-            'user_id' => $u1,
-            'description' => "This is an annoying history (8) on Portugal from user (1)",
-            'history_date' => Carbon::now(),
-            'city_id' => $city->id,
-            'active' => true,
-            'emotion_id' => $e2,
-        ]);
-        $h9 = DB::table('histories')->insertGetId([
-            'user_id' => $u6,
-            'description' => "This is an annoying history (9) on Italy from user (6)",
-            'history_date' => Carbon::now(),
-            'city_id' => $italy_city->id,
-            'active' => true,
-            'emotion_id' => $e2,
-        ]);
+     
 
         DB::table('history_history')->insert([
             'history_one' => $h1,
+            'history_two' => $h7
+        ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h7,
+            'history_two' => $h1
+        ]);
+
+        DB::table('history_history')->insert([
+            'history_one' => $h2,
             'history_two' => $h3
         ]);
         DB::table('history_history')->insert([
             'history_one' => $h3,
-            'history_two' => $h1
-        ]);
-
-        DB::table('history_history')->insert([
-            'history_one' => $h1,
-            'history_two' => $h4
-        ]);
-        DB::table('history_history')->insert([
-            'history_one' => $h4,
-            'history_two' => $h1
+            'history_two' => $h2
         ]);
 
         DB::table('history_history')->insert([
@@ -255,30 +240,31 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('history_history')->insert([
-            'history_one' => $h1,
+            'history_one' => $h4,
             'history_two' => $h5
         ]);
         DB::table('history_history')->insert([
             'history_one' => $h5,
+            'history_two' => $h4
+        ]);
+
+        DB::table('history_history')->insert([
+            'history_one' => $h5,
+            'history_two' => $h6
+        ]);
+        DB::table('history_history')->insert([
+            'history_one' => $h6,
+            'history_two' => $h5
+        ]);
+
+        DB::table('history_history')->insert([
+            'history_one' => $h6,
             'history_two' => $h1
         ]);
-
         DB::table('history_history')->insert([
-            'history_one' => $h3,
-            'history_two' => $h5
-        ]);
-        DB::table('history_history')->insert([
-            'history_one' => $h5,
-            'history_two' => $h3
+            'history_one' => $h1,
+            'history_two' => $h6
         ]);
 
-        DB::table('history_history')->insert([
-            'history_one' => $h8,
-            'history_two' => $h9
-        ]);
-        DB::table('history_history')->insert([
-            'history_one' => $h9,
-            'history_two' => $h8
-        ]);
     }
 }

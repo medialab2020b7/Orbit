@@ -160,6 +160,9 @@
                     <!-- As emocoes são carregadas da BD. Elas foram criadas hardcoded por meio do Seeder. Checar em "./database/seeds/DatabaseSeeder.php" -->
                     </select>
                 </div>
+                <button id="clearFilters" type="button" class="btn btn-primary">
+                        Clear Filters
+                </button>
             </div>
             <div class="col-md-6">
                 <div id="globeArea">
@@ -192,7 +195,7 @@
                             data-target="#submitStoryModal">
                         TELL MY STORY
                     </button>
-                @endif
+            @endif
             </div>
 
 

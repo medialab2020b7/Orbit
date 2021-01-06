@@ -9,16 +9,18 @@ $(function () {
     const listElementTemplate = storiesList.find(".story");
 
     const initialCountry = "PT";
-    const filterParams = {
+    let filterParams = {
         // city: "",
         emotion: "",
         baseHistories: [],
-        selectedOnModal: null
+        selectedOnModal: null,
+        histories: []
     };
 
     let selectedCountryCode = "PT";
     const soundButton = $("#btn-sound");
     const showOnMapButton = $("#btn-onmap");
+    const clearFiltersButton = $("#clearFilters");
 
     const botaoClicar = $("#btn-story");
 
@@ -100,6 +102,7 @@ $(function () {
         axios.get(`/api/histories?${params}`).then(response => {
             console.log("Loaded histories"); console.log(response); console.log(response.data);  //Testing
             let histories = response.data;
+            filterParams.histories = histories;
             let filteredStories = [];
             let bhs = filterParams.baseHistories;
             histories.forEach(h => {
@@ -157,13 +160,24 @@ $(function () {
         selectedCountryCode = selectedCountry.ISOCode;
 
         let hasBase = filterParams.baseHistories.length > 0;
+        let newHistoriesID = [];
+        let newHistories = [];
 
-        //If there is a base collection of histories, only show fro them
-        filterParams.baseHistories = filterParams.baseHistories.filter(h => {
-            if(h.location.country.code == selectedCountryCode)
-                return true;
-            return false;
+        filterParams.baseHistories.forEach(h => {
+            let connected = h.histories;
+            connected.forEach(c => {
+                let country = c.location.country.code;
+                if(country == selectedCountryCode)
+                newHistoriesID.push(c.id);
+            });
         });
+
+        filterParams.histories.forEach(h => {
+            if(newHistoriesID.includes(h.id))
+                newHistories.push(h);
+        });
+
+        filterParams.baseHistories = newHistories;
 
         if(hasBase && filterParams.baseHistories.length == 0)
             alert("There is no connected history to current history. Showing all histories on that location.");
@@ -347,6 +361,20 @@ $(function () {
 
         let audio = new Audio(file);
         audio.play();
+    });
+
+    //Clear all filters
+    clearFiltersButton.on("click", function () {
+        filterParams = {
+            // city: "",
+            emotion: "",
+            baseHistories: [],
+            selectedOnModal: null,
+            histories: []
+        };
+        selectedCity = "";
+
+        fetchHistories();
     });
 
 
