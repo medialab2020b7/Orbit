@@ -5,7 +5,7 @@
         <div class="list-group">
             <a href="{{asset("files/pitch.pdf")}}" class="list-group-item list-group-item-action" target="_blank">Pitch Presentation</a>
             <a href="{{asset("files/final-presentation.pdf")}}" class="list-group-item list-group-item-action" target="_blank">Final Presentation</a>
-            <a href="http://www.africau.edu/images/default/sample.pdf" class="list-group-item list-group-item-action" target="_blank">Project Report</a>
+            <a href="{{asset("files/report.pdf")}}" class="list-group-item list-group-item-action" target="_blank">Project Report</a>
         </div>
     </div>
 </section>
